@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1lC-AN-sM0">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Screen-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainScreen" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImageMainScreen" translatesAutoresizingMaskIntoConstraints="NO" id="by0-cQ-Tyq">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msG-i7-MRF">
+                                <rect key="frame" x="92.5" y="290" width="135" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="135" id="g9h-G6-3cb"/>
+                                    <constraint firstAttribute="height" constant="64" id="zWW-1V-6rm"/>
+                                </constraints>
+                                <state key="normal" title="New File..." image="newFileButtonIcon">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNS-M0-oHn">
+                                <rect key="frame" x="102.5" y="383" width="115" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="3Sa-sD-6EO"/>
+                                    <constraint firstAttribute="width" constant="115" id="bLD-BR-RXv"/>
+                                </constraints>
+                                <state key="normal" title="Open" image="openFileButtonIcon">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJv-y3-Xac">
+                                <rect key="frame" x="62.5" y="483" width="195" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="hU4-nf-Bzh"/>
+                                    <constraint firstAttribute="height" constant="64" id="mdu-rL-0m9"/>
+                                </constraints>
+                                <state key="normal" title="Documentation" image="documentationIcon">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuK-cf-bvw">
+                                <rect key="frame" x="90" y="586" width="140" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="XEW-qt-frj"/>
+                                    <constraint firstAttribute="width" constant="140" id="hQw-YK-1Mr"/>
+                                </constraints>
+                                <state key="normal" title="Email Us" image="emailUsIcon">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uNS-M0-oHn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3cT-Zx-qqS"/>
+                            <constraint firstItem="IJv-y3-Xac" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CWI-JS-LC4"/>
+                            <constraint firstItem="msG-i7-MRF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hfo-fl-eYC"/>
+                            <constraint firstItem="by0-cQ-Tyq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KyC-6r-QcN"/>
+                            <constraint firstItem="OuK-cf-bvw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vet-QB-GOd"/>
+                            <constraint firstItem="by0-cQ-Tyq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="p4x-Va-0ut"/>
+                            <constraint firstItem="by0-cQ-Tyq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tlY-ie-1r6"/>
+                            <constraint firstItem="by0-cQ-Tyq" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="uZD-O9-yQR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JhF-Bn-u2W"/>
+                    <connections>
+                        <outlet property="backgroundImage" destination="by0-cQ-Tyq" id="ViW-tf-35M"/>
+                        <outlet property="documentationButton" destination="IJv-y3-Xac" id="jo6-ht-dbf"/>
+                        <outlet property="emailUsButton" destination="OuK-cf-bvw" id="20u-cB-sOF"/>
+                        <outlet property="newFileButton" destination="msG-i7-MRF" id="Btu-hC-glw"/>
+                        <outlet property="openFileButton" destination="uNS-M0-oHn" id="6dI-Sh-CHV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="135.9375"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="brG-4r-p1g">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1lC-AN-sM0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t1f-tM-sha">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lxx-qm-phO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xKz-ia-zCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="216" y="139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="backgroundImageMainScreen" width="1241" height="2688"/>
+        <image name="documentationIcon" width="64" height="64"/>
+        <image name="emailUsIcon" width="64" height="64"/>
+        <image name="newFileButtonIcon" width="50" height="50"/>
+        <image name="openFileButtonIcon" width="64" height="64"/>
+    </resources>
+</document>
