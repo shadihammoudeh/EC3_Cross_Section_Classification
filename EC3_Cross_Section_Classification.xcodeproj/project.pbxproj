@@ -14,6 +14,7 @@
 		CF6DB1D12257E6B800C69B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6DB1D02257E6B800C69B4C /* Assets.xcassets */; };
 		CF6DB1D42257E6B800C69B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6DB1D22257E6B800C69B4C /* LaunchScreen.storyboard */; };
 		CF6DB1DD2257EB5700C69B4C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6DB1DC2257EB5700C69B4C /* StoreKit.framework */; };
+		CFCCC7A0225BF136005C5F6A /* CustomButtom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCCC79F225BF136005C5F6A /* CustomButtom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CF6DB1D32257E6B800C69B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF6DB1D52257E6B800C69B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF6DB1DC2257EB5700C69B4C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CFCCC79F225BF136005C5F6A /* CustomButtom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				CF6DB1C82257E6B700C69B4C /* MainScreen.swift */,
+				CFCCC79F225BF136005C5F6A /* CustomButtom.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				CF6DB1C92257E6B700C69B4C /* MainScreen.swift in Sources */,
 				CF6DB1CF2257E6B700C69B4C /* EC3_Cross_Section_Classification.xcdatamodeld in Sources */,
 				CF6DB1C72257E6B700C69B4C /* AppDelegate.swift in Sources */,
+				CFCCC7A0225BF136005C5F6A /* CustomButtom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,13 @@ import UIKit
 
 class MainScreen: UIViewController {
     
+    let xy = CustomButton(buttonTitle: "Hello")
+
+    
+    let documentationButtonPositionAndSize: [String: CGFloat] = ["xCoordinate": 100, "yCoordinate": 100, "width": 200, "height": 64]
+    
+    let emailUsButtonPositionAndSize: [String: CGFloat] = ["xCoordinate": 100, "yCoordinate": 100, "width": 150, "height": 64]
+    
     let buttonTitle: [String: String] = ["newFileButtonTitle": "New File...", "openFileButtonTitle": "Open", "documentationButtonTitle": "Documentation", "emailUsButtonTitle": "Email Us"]
     
     let buttonIconImage: [String: String] = ["newFileButtonIcon": "newFileButtonIcon", "openFileButtonIcon": "openFileButtonIcon", "documentationButtonIcon": "documentationIcon", "emailUsButtonIcon": "emailUsIcon"]
@@ -28,6 +35,20 @@ class MainScreen: UIViewController {
         
         super.viewDidLoad()
         
+        view.addSubview(xy)
+        
+        xy.addTarget(self, action: #selector(xyPressed(sender:)), for: .touchUpInside)
+        
+        xy.translatesAutoresizingMaskIntoConstraints = false
+        
+        xy.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        xy.widthAnchor.constraint(equalToConstant: 280).isActive = true
+        
+        xy.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        xy.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -200).isActive = true
+        
         let currentIphoneScreenHeight = Double(UIScreen.main.bounds.size.height)
         
         let navigationBarHeight = self.navigationController?.navigationBar.frame.size.height
@@ -41,18 +62,14 @@ class MainScreen: UIViewController {
         if currentIphoneScreenHeight == differentIphoneScreens["iPhoneXsMax,XR"] {
             
             let newFileButtonPositionAndSize: [String: Double] = ["xCoordinate": 100, "yCoordinate": Double(topPadding!) + Double(navigationBarHeight!) + 100, "width": 185, "height": 64]
-        
+
             createAnewButtonProgrammatically(buttonXpostion: 100, buttonYposition: newFileButtonPositionAndSize["yCoordinate"]!, buttonWidth: newFileButtonPositionAndSize["width"]!, buttonHeight: newFileButtonPositionAndSize["height"]!, buttonCornerRadius: 20, buttonBackgroundColour: .red, buttonTextSize: 18, buttonTextColourInNormalCondition: .white, buttonTextColourInHighlightedCondition: .blue, buttonTextTitle: buttonTitle["newFileButtonTitle"]!, buttonIconImage: buttonIconImage["newFileButtonIcon"]!).addTarget(self, action: #selector(openFileButtonPressed(sender:)), for: .touchUpInside)
             
-            let openFileButtonPositionAndSize: [String: Double] = ["xCoordinate": 100, "yCoordinate": 300, "width": 115, "height": 64]
+            let openFileButtonPositionAndSize: [String: Double] = ["xCoordinate": 100, "yCoordinate": newFileButtonPositionAndSize["yCoordinate"]!, "width": 115, "height": 64]
             
-            createAnewButtonProgrammatically(buttonXpostion: 100, buttonYposition: openFileButtonPositionAndSize["yCoordinate"]!, buttonWidth: 150, buttonHeight: 64, buttonCornerRadius: 20, buttonBackgroundColour: .red, buttonTextSize: 18, buttonTextColourInNormalCondition: .white, buttonTextColourInHighlightedCondition: .blue, buttonTextTitle: buttonTitle["openFileButtonTitle"]!, buttonIconImage: buttonIconImage["openFileButtonIcon"]!).addTarget(self, action: #selector(openFileButtonPressed(sender:)), for: .touchUpInside)
-            
-            let documentationButtonPositionAndSize: [String: Double] = ["xCoordinate": 100, "yCoordinate": 100, "width": 200, "height": 64]
+            createAnewButtonProgrammatically(buttonXpostion: 100, buttonYposition: 250, buttonWidth: 150, buttonHeight: 64, buttonCornerRadius: 20, buttonBackgroundColour: .red, buttonTextSize: 18, buttonTextColourInNormalCondition: .white, buttonTextColourInHighlightedCondition: .blue, buttonTextTitle: buttonTitle["openFileButtonTitle"]!, buttonIconImage: buttonIconImage["openFileButtonIcon"]!).addTarget(self, action: #selector(openFileButtonPressed(sender:)), for: .touchUpInside)
 
             createAnewButtonProgrammatically(buttonXpostion: 100, buttonYposition: 350, buttonWidth: 150, buttonHeight: 64, buttonCornerRadius: 20, buttonBackgroundColour: .red, buttonTextSize: 18, buttonTextColourInNormalCondition: .white, buttonTextColourInHighlightedCondition: .blue, buttonTextTitle: buttonTitle["documentationButtonTitle"]!, buttonIconImage: buttonIconImage["documentationButtonIcon"]!).addTarget(self, action: #selector(openFileButtonPressed(sender:)), for: .touchUpInside)
-            
-            let emailUsButtonPositionAndSize: [String: Double] = ["xCoordinate": 100, "yCoordinate": 100, "width": 150, "height": 64]
 
             createAnewButtonProgrammatically(buttonXpostion: 100, buttonYposition: 450, buttonWidth: 150, buttonHeight: 64, buttonCornerRadius: 20, buttonBackgroundColour: .red, buttonTextSize: 18, buttonTextColourInNormalCondition: .white, buttonTextColourInHighlightedCondition: .blue, buttonTextTitle: buttonTitle["emailUsButtonTitle"]!, buttonIconImage: buttonIconImage["emailUsButtonIcon"]!).addTarget(self, action: #selector(openFileButtonPressed(sender:)), for: .touchUpInside)
             
@@ -61,18 +78,6 @@ class MainScreen: UIViewController {
             let newFileButtonPositionAndSize: [String: Double] = ["xCoordinate": 100, "yCoordinate": Double(topPadding!) + Double(navigationBarHeight!) + 100-(differentBackgroundImageSize["iPhoneXsMax,XR"]!-differentBackgroundImageSize["iPhoneX,Xs"]!)/5, "width": 185, "height": 64]
             
             createAnewButtonProgrammatically(buttonXpostion: 100, buttonYposition: newFileButtonPositionAndSize["yCoordinate"]!, buttonWidth: newFileButtonPositionAndSize["width"]!, buttonHeight: newFileButtonPositionAndSize["height"]!, buttonCornerRadius: 20, buttonBackgroundColour: .red, buttonTextSize: 18, buttonTextColourInNormalCondition: .white, buttonTextColourInHighlightedCondition: .blue, buttonTextTitle: buttonTitle["newFileButtonTitle"]!, buttonIconImage: buttonIconImage["newFileButtonIcon"]!).addTarget(self, action: #selector(openFileButtonPressed(sender:)), for: .touchUpInside)
-            
-            let openFileButtonPositionAndSize: [String: Double] = ["xCoordinate": 100, "yCoordinate": 300, "width": 115, "height": 64]
-            
-            createAnewButtonProgrammatically(buttonXpostion: 100, buttonYposition: openFileButtonPositionAndSize["yCoordinate"]!, buttonWidth: 150, buttonHeight: 64, buttonCornerRadius: 20, buttonBackgroundColour: .red, buttonTextSize: 18, buttonTextColourInNormalCondition: .white, buttonTextColourInHighlightedCondition: .blue, buttonTextTitle: buttonTitle["openFileButtonTitle"]!, buttonIconImage: buttonIconImage["openFileButtonIcon"]!).addTarget(self, action: #selector(openFileButtonPressed(sender:)), for: .touchUpInside)
-            
-            let documentationButtonPositionAndSize: [String: Double] = ["xCoordinate": 100, "yCoordinate": 400, "width": 200, "height": 64]
-            
-            createAnewButtonProgrammatically(buttonXpostion: 100, buttonYposition: 350, buttonWidth: 150, buttonHeight: 64, buttonCornerRadius: 20, buttonBackgroundColour: .red, buttonTextSize: 18, buttonTextColourInNormalCondition: .white, buttonTextColourInHighlightedCondition: .blue, buttonTextTitle: buttonTitle["documentationButtonTitle"]!, buttonIconImage: buttonIconImage["documentationButtonIcon"]!).addTarget(self, action: #selector(openFileButtonPressed(sender:)), for: .touchUpInside)
-            
-            let emailUsButtonPositionAndSize: [String: Double] = ["xCoordinate": 100, "yCoordinate": 500, "width": 150, "height": 64]
-            
-            createAnewButtonProgrammatically(buttonXpostion: 100, buttonYposition: 450, buttonWidth: 150, buttonHeight: 64, buttonCornerRadius: 20, buttonBackgroundColour: .red, buttonTextSize: 18, buttonTextColourInNormalCondition: .white, buttonTextColourInHighlightedCondition: .blue, buttonTextTitle: buttonTitle["emailUsButtonTitle"]!, buttonIconImage: buttonIconImage["emailUsButtonIcon"]!).addTarget(self, action: #selector(openFileButtonPressed(sender:)), for: .touchUpInside)
             
         }
         
@@ -144,4 +149,10 @@ class MainScreen: UIViewController {
         
     }
 
+    @objc func xyPressed(sender : UIButton) {
+        
+        xy.shake()
+        
+    }
+    
 }
