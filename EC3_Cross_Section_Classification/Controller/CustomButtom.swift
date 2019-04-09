@@ -8,6 +8,8 @@
 
 import UIKit
 
+import ChameleonFramework
+
 class CustomButton: UIButton {
     
     override init(frame: CGRect) {
@@ -26,11 +28,19 @@ class CustomButton: UIButton {
         
     }
     
-    convenience init(buttonTitle: String) {
+    convenience init(buttonTitle: String, buttonIconImage: String, buttonHeight: CGFloat, buttonWidth: CGFloat) {
         
         self.init()
         
-        self.setTitle(buttonTitle, for: .normal)
+        setTitle(buttonTitle, for: .normal)
+        
+        if let buttonImage = UIImage(named: buttonIconImage) {
+        
+        setImage(buttonImage, for: .normal)
+            
+        }
+        
+        setConstraints(buttonHeight: buttonHeight, buttonWidth: buttonWidth)
         
         setupButton()
     }
@@ -41,9 +51,9 @@ class CustomButton: UIButton {
         
         setTitleColor(.white, for: .normal)
         
-        backgroundColor = .blue
-        
         titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
+        
+        backgroundColor = UIColor(hexString: "#FA8072")
         
         layer.cornerRadius = 25
         
@@ -94,6 +104,21 @@ class CustomButton: UIButton {
         shake.toValue = toValue
         
         layer.add(shake, forKey: "position")
+        
+    }
+    
+    func setConstraints(buttonHeight height: CGFloat, buttonWidth width: CGFloat) {
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            heightAnchor.constraint(equalToConstant: height),
+            
+            widthAnchor.constraint(equalToConstant: width)
+        
+            
+            ])
         
     }
     

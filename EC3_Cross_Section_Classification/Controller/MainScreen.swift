@@ -10,9 +10,10 @@ import UIKit
 
 class MainScreen: UIViewController {
     
-    let xy = CustomButton(buttonTitle: "Hello")
-
+    // The below lines of code create instances for all the buttons needed in this ViewController using the CustomButton Class:
     
+    let newButton = CustomButton(buttonTitle: "New Button", buttonIconImage: "newFileButtonIcon", buttonHeight: 100, buttonWidth: 200)
+
     let documentationButtonPositionAndSize: [String: CGFloat] = ["xCoordinate": 100, "yCoordinate": 100, "width": 200, "height": 64]
     
     let emailUsButtonPositionAndSize: [String: CGFloat] = ["xCoordinate": 100, "yCoordinate": 100, "width": 150, "height": 64]
@@ -35,21 +36,16 @@ class MainScreen: UIViewController {
         
         super.viewDidLoad()
         
-        view.addSubview(xy)
+        view.addSubview(newButton)
         
-        xy.addTarget(self, action: #selector(xyPressed(sender:)), for: .touchUpInside)
+        newButton.addTarget(self, action: #selector(xyPressed(sender:)), for: .touchUpInside)
         
-        xy.translatesAutoresizingMaskIntoConstraints = false
+        newButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        xy.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        xy.widthAnchor.constraint(equalToConstant: 280).isActive = true
-        
-        xy.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        xy.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -200).isActive = true
-        
+        newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -200).isActive = true
+                
         let currentIphoneScreenHeight = Double(UIScreen.main.bounds.size.height)
+        
         
         let navigationBarHeight = self.navigationController?.navigationBar.frame.size.height
         
@@ -151,7 +147,7 @@ class MainScreen: UIViewController {
 
     @objc func xyPressed(sender : UIButton) {
         
-        xy.shake()
+        newButton.shake()
         
     }
     
