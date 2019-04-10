@@ -28,7 +28,7 @@ class CustomButton: UIButton {
         
     }
     
-    convenience init(buttonTitle: String, buttonIconImage: String, buttonHeight: CGFloat, buttonWidth: CGFloat) {
+    convenience init(buttonTitle: String, buttonIconImage: String, buttonTag tag: Int, buttonHeight: CGFloat, buttonWidth: CGFloat) {
         
         self.init()
         
@@ -42,16 +42,21 @@ class CustomButton: UIButton {
         
         setConstraints(buttonHeight: buttonHeight, buttonWidth: buttonWidth)
         
+        self.tag = tag
+        
         setupButton()
+        
     }
     
     func setupButton() {
         
         setShadow()
         
-        setTitleColor(.white, for: .normal)
+        setTitleColor(.black, for: .normal)
         
-        titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
+        setTitleColor(.white, for: .highlighted)
+        
+        titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 18)
         
         backgroundColor = UIColor(hexString: "#FA8072")
         
@@ -59,7 +64,13 @@ class CustomButton: UIButton {
         
         layer.borderWidth = 3.0
         
-        layer.borderColor = UIColor.darkGray.cgColor
+        layer.borderColor = UIColor.yellow.cgColor
+        
+        showsTouchWhenHighlighted = true
+        
+        alpha = 0.60
+        
+        contentHorizontalAlignment = .center
         
     }
     

@@ -15,6 +15,7 @@
 		CF6DB1D42257E6B800C69B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6DB1D22257E6B800C69B4C /* LaunchScreen.storyboard */; };
 		CF6DB1DD2257EB5700C69B4C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6DB1DC2257EB5700C69B4C /* StoreKit.framework */; };
 		CFCCC7A0225BF136005C5F6A /* CustomButtom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCCC79F225BF136005C5F6A /* CustomButtom.swift */; };
+		CFDBA457225E8BD200631F28 /* ButtonsAndIphonesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDBA456225E8BD200631F28 /* ButtonsAndIphonesData.swift */; };
 		D77E62E93B897408C3B8DF96 /* Pods_EC3_Cross_Section_Classification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71784A0D59CB20F7BEBABC6D /* Pods_EC3_Cross_Section_Classification.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		CF6DB1D52257E6B800C69B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF6DB1DC2257EB5700C69B4C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CFCCC79F225BF136005C5F6A /* CustomButtom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtom.swift; sourceTree = "<group>"; };
+		CFDBA456225E8BD200631F28 /* ButtonsAndIphonesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsAndIphonesData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +55,6 @@
 				77D35147DC051ECC8EB7D1B7 /* Pods-EC3_Cross_Section_Classification.debug.xcconfig */,
 				625BB5D5469AC1096A423D5E /* Pods-EC3_Cross_Section_Classification.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -79,8 +80,9 @@
 			isa = PBXGroup;
 			children = (
 				CF6DB1C62257E6B700C69B4C /* AppDelegate.swift */,
-				CF6DB1DF2257F45600C69B4C /* Controller */,
+				CFDBA455225E534F00631F28 /* Model */,
 				CF6DB1DE2257EE7000C69B4C /* View */,
+				CF6DB1DF2257F45600C69B4C /* Controller */,
 				CF6DB1D02257E6B800C69B4C /* Assets.xcassets */,
 				CF6DB1D52257E6B800C69B4C /* Info.plist */,
 				CF6DB1CD2257E6B700C69B4C /* EC3_Cross_Section_Classification.xcdatamodeld */,
@@ -110,9 +112,17 @@
 			isa = PBXGroup;
 			children = (
 				CF6DB1C82257E6B700C69B4C /* MainScreen.swift */,
-				CFCCC79F225BF136005C5F6A /* CustomButtom.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFDBA455225E534F00631F28 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFDBA456225E8BD200631F28 /* ButtonsAndIphonesData.swift */,
+				CFCCC79F225BF136005C5F6A /* CustomButtom.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +254,7 @@
 				CF6DB1CF2257E6B700C69B4C /* EC3_Cross_Section_Classification.xcdatamodeld in Sources */,
 				CF6DB1C72257E6B700C69B4C /* AppDelegate.swift in Sources */,
 				CFCCC7A0225BF136005C5F6A /* CustomButtom.swift in Sources */,
+				CFDBA457225E8BD200631F28 /* ButtonsAndIphonesData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
