@@ -28,7 +28,7 @@ class CustomButton: UIButton {
         
     }
     
-    convenience init(buttonTitle: String, buttonIconImage: String, buttonTag tag: Int, buttonHeight: CGFloat, buttonWidth: CGFloat) {
+    convenience init(buttonTitle: String, buttonIconImage: String, buttonTag tag: Int, buttonHeight: CGFloat, buttonWidth: CGFloat, buttonSelector: Selector, buttonTarget: Any?) {
         
         self.init()
         
@@ -39,6 +39,8 @@ class CustomButton: UIButton {
         setImage(buttonImage, for: .normal)
             
         }
+        
+        addTarget(buttonTarget, action: buttonSelector, for: .touchUpInside)
         
         setConstraints(buttonHeight: buttonHeight, buttonWidth: buttonWidth)
         
