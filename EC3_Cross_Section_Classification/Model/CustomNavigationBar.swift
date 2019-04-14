@@ -28,6 +28,51 @@ class CustomNavigationBar: UINavigationBar {
         
     }
     
+    convenience init(navigationBarTitle title: String) {
+        
+        self.init()
+        
+        let newNavigationBarItem = UINavigationItem()
+        
+        let navigationBarTitleLabel = UILabel()
+
+        navigationBarTitleLabel.text = title
+        
+        navigationBarTitleLabel.textColor = .white
+        
+        newNavigationBarItem.titleView = navigationBarTitleLabel
+        
+        items = [newNavigationBarItem]
+
+    }
+    
+    convenience init(navigationBarTitle title: String, leftBarButtonTarget target: Any?, leftBarButtonSelector selector: Selector) {
+        
+        self.init()
+        
+        let newNavigationBarItem = UINavigationItem()
+        
+        let navigationBarTitleLabel = UILabel()
+        
+        navigationBarTitleLabel.text = title
+        
+        navigationBarTitleLabel.textColor = .white
+        
+        newNavigationBarItem.titleView = navigationBarTitleLabel
+        
+        var navigationBarLeftButton = newNavigationBarItem.leftBarButtonItem
+        
+        navigationBarLeftButton = UIBarButtonItem(barButtonSystemItem: .action, target: target, action: selector)
+        
+        navigationBarLeftButton?.title = "Back"
+        
+        newNavigationBarItem.leftBarButtonItem = navigationBarLeftButton
+        
+        
+        items = [newNavigationBarItem]
+        
+    }
+    
     func setupNavigationBar() {
         
         isTranslucent = true
@@ -42,19 +87,19 @@ class CustomNavigationBar: UINavigationBar {
         
         // The below line of codes add the title as an item to the NavigationBar:
         
-        let newNavigationBarItem = UINavigationItem()
+//        let newNavigationBarItem = UINavigationItem()
+//
+//        let navigationBarTitleLabel = UILabel()
         
-        let navigationBarTitleLabel = UILabel()
+//        navigationBarTitleLabel.text = "Eurocodes 3 Cross-Section Classification"
         
-        navigationBarTitleLabel.text = "Eurocodes 3 Cross-Section Classification"
-        
-        navigationBarTitleLabel.textColor = .white
+//        navigationBarTitleLabel.textColor = .white
         
         // The below line of code adds the TitleLabel as an item to the NavigationBar:
         
-        newNavigationBarItem.titleView = navigationBarTitleLabel
-        
-        items = [newNavigationBarItem]
+//        newNavigationBarItem.titleView = navigationBarTitleLabel
+//
+//        items = [newNavigationBarItem]
         
         // The below line of code is needed in order to allow the activation of the constraints later on:
         

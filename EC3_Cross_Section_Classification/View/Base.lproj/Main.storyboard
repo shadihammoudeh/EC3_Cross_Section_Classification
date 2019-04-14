@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,12 +12,16 @@
         <!--Main Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainScreen" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainScreen" id="BYZ-38-t0r" customClass="MainScreen" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SrA-gZ-x5C"/>
+                        <viewControllerLayoutGuide type="bottom" id="K0V-Wn-2G9"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImageMainScreen" id="by0-cQ-Tyq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backgroundImageMainScreen" translatesAutoresizingMaskIntoConstraints="NO" id="by0-cQ-Tyq">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -38,6 +42,10 @@
         <scene sceneID="obE-28-2R6">
             <objects>
                 <viewController id="ZQq-fo-zJa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I26-h1-2Ga"/>
+                        <viewControllerLayoutGuide type="bottom" id="g9A-jz-IG0"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZmX-JQ-7mv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,12 +54,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TdS-po-fte" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1591.1399999999999" y="195.62666666666667"/>
+            <point key="canvasLocation" x="1589.8550724637682" y="195.53571428571428"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="VbH-Q7-ebW">
             <objects>
                 <viewController id="Z5H-th-3Hs" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mf8-ie-s0D"/>
+                        <viewControllerLayoutGuide type="bottom" id="6dE-us-QIs"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="d4z-A0-wQS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,19 +74,23 @@
             </objects>
             <point key="canvasLocation" x="1591" y="929"/>
         </scene>
-        <!--View Controller-->
+        <!--New File1 View Controller-->
         <scene sceneID="vZQ-h1-Z6v">
             <objects>
-                <viewController id="p6y-Me-L1y" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewFile1ViewController" id="p6y-Me-L1y" customClass="NewFile1ViewController" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xCc-QA-SPP"/>
+                        <viewControllerLayoutGuide type="bottom" id="c3P-JZ-Oym"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zNv-Rx-hAP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oG5-83-2DW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1590" y="-546"/>
+            <point key="canvasLocation" x="1589.8550724637682" y="-546.42857142857144"/>
         </scene>
     </scenes>
     <resources>

@@ -16,7 +16,7 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
     
     // Thie below line of code creates an instance for the NavigationBar from the CustomNavigationBar class:
     
-    let navigationBar = CustomNavigationBar()
+    let navigationBar = CustomNavigationBar(navigationBarTitle: "Eurocode 3 Cross-Section")
 
     // The only input that is hard-coded in the below Buttons Instances is buttonTag:
     
@@ -115,6 +115,16 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
             print("button 1 has been pressed")
             
             newFileButton.shake()
+            
+            guard let nextViewControllerToGoTo = storyboard?.instantiateViewController(withIdentifier: "NewFile1ViewController") else {
+                
+                print("NewFile1ViewController could not be presented")
+                
+                return
+                
+            }
+            
+            present(nextViewControllerToGoTo, animated: true, completion: nil)
             
         } else if sender.tag == 2 {
             
