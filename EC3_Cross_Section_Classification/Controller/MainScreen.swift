@@ -16,7 +16,8 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
     
     // Thie below line of code creates an instance for the NavigationBar from the CustomNavigationBar class:
     
-    let navigationBar = CustomNavigationBar(navigationBarTitle: "Eurocode 3 Cross-Section")
+    let navigationBar = CustomNavigationBar(navigationBarTitle: "Classification of Cross Sections to Eurocode 3")
+    
 
     // The only input that is hard-coded in the below Buttons Instances is buttonTag:
     
@@ -37,28 +38,30 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         // The below lines of code calculate the top and bottom height of the safeAreaInsets, which need to be substracted from the total screen height in order to get the remaining total height of the safeArea.
         // When the bounds change for a view controller's view, the view adjusts the positions of its subviews and then the system calls this method. However, this method being called does not indicate that the individual layouts of the view's subviews have been adjusted. Each subview is responsible for adjusting its own layout.
         //Your view controller can override this method to make changes after the view lays out its subviews. The default implementation of this method does nothing.
-        
+
         var topSafeArea: CGFloat
-
+        
         var bottomSafeArea: CGFloat
-
+        
         if #available(iOS 11.0, *) {
-
+            
             topSafeArea = view.safeAreaInsets.top
             
             bottomSafeArea = view.safeAreaInsets.bottom
             
         } else {
-
+            
             topSafeArea = topLayoutGuide.length
-
+            
             bottomSafeArea = bottomLayoutGuide.length
-
+            
         }
         
         // This is the correct point to insert the below code in order to get the height of the navigation bar as well as spacings between buttons (i.e., after it has been added as a subview to this View Controller):
-            
+        
         let navigationBarHeight = navigationBar.frame.size.height
+        
+        print(navigationBarHeight)
         
         let totalIphoneScreenHeight = self.view.frame.size.height
         
@@ -69,15 +72,15 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         let spacingsBetweenButtons = (safeAreaHeight - ButtonsAndIphonesData().buttonHeight["newFileButton"]! - ButtonsAndIphonesData().buttonHeight["openFileButton"]! - ButtonsAndIphonesData().buttonHeight["documentationButton"]! - ButtonsAndIphonesData().buttonHeight["emailUsButton"]!) / 5
         
         newFileButton.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: spacingsBetweenButtons).isActive = true
-
-        openButton.topAnchor.constraint(equalTo: newFileButton.bottomAnchor, constant: spacingsBetweenButtons).isActive = true
-
-        documentationButton.topAnchor.constraint(equalTo: openButton.bottomAnchor, constant: spacingsBetweenButtons).isActive = true
-
-        emailUsButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: (-1*spacingsBetweenButtons)).isActive = true
-
-        // safe area values are now available to use
         
+        openButton.topAnchor.constraint(equalTo: newFileButton.bottomAnchor, constant: spacingsBetweenButtons).isActive = true
+        
+        documentationButton.topAnchor.constraint(equalTo: openButton.bottomAnchor, constant: spacingsBetweenButtons).isActive = true
+        
+        emailUsButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: (-1*spacingsBetweenButtons)).isActive = true
+        
+        // safe area values are now available to use
+    
     }
     
     // viewDidLoad() Method gets called after loading the view. Thus, any UI related changes should be done inside it:
@@ -171,13 +174,13 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
 
         if #available(iOS 11, *) {
-            
+
             navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-            
+
         } else {
-            
+
             navigationBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-            
+
         }
         
         // The below lines of code defines some of the constraints for the UIButtons:
@@ -201,3 +204,4 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
     }
     
 }
+

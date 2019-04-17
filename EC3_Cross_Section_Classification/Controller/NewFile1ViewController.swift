@@ -8,9 +8,11 @@
 
 import UIKit
 
-class NewFile1ViewController: UIViewController, UINavigationBarDelegate {
+class NewFile1ViewController: UIViewController, UINavigationBarDelegate, UITabBarDelegate {
     
-    let navigationBar = CustomNavigationBar(navigationBarTitle: "Hello", leftBarButtonTarget: self, leftBarButtonSelector: #selector((buttonPressed(sender:))))
+    let navigationBar = CustomNavigationBar(navigationBarTitle: "'Blue Book' Catalogue Sections", leftBarButtonTarget: self, leftBarButtonSelector: #selector(buttonPressed(sender:)))
+    
+    let tabBar = CustomTabBar()
 
     override func viewDidLoad() {
         
@@ -18,7 +20,11 @@ class NewFile1ViewController: UIViewController, UINavigationBarDelegate {
         
         navigationBar.delegate = self
         
+        tabBar.delegate = self
+        
         view.addSubview(navigationBar)
+        
+        view.addSubview(tabBar)
         
         setupConstraints()
 
@@ -54,12 +60,30 @@ class NewFile1ViewController: UIViewController, UINavigationBarDelegate {
             
         }
         
+        // The below code lines setup the needed constraints for the tabBar:
+        
+        tabBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        
+        tabBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        
+        tabBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
     }
     
     @objc func buttonPressed
         (sender : UIButton) {
         
         print("button pressed")
+        
+        guard let previousViewControllerToGoTo = storyboard?.instantiateViewController(withIdentifier: "MainScreen") else {
+            
+            print("MainScreen could not be presented")
+            
+            return
+            
+        }
+        
+        present(previousViewControllerToGoTo, animated: false, completion: nil)
         
     }
     
