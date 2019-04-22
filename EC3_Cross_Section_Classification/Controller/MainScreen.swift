@@ -119,9 +119,9 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
             
             newFileButton.shake()
             
-            guard let nextViewControllerToGoTo = storyboard?.instantiateViewController(withIdentifier: "NewFile1ViewController") else {
+            guard let nextViewControllerToGoTo = storyboard?.instantiateViewController(withIdentifier: "NewFileButtonPressedTabController") else {
                 
-                print("NewFile1ViewController could not be presented")
+                print("NewFileButtonPressedTabController could not be presented")
                 
                 return
                 

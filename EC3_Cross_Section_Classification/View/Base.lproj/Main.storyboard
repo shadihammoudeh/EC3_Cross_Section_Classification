@@ -38,80 +38,66 @@
             </objects>
             <point key="canvasLocation" x="710.14492753623199" y="194.86607142857142"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="obE-28-2R6">
+        <!--Item 2-->
+        <scene sceneID="bsn-AQ-48m">
             <objects>
-                <viewController storyboardIdentifier="OpenRolledSections" id="ZQq-fo-zJa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StructuralHollowSectionsSecondtemInTabBarOpenRolledSections" id="QQi-QC-4VP" customClass="SecondItemInTabBarHollowStructuralSections" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="I26-h1-2Ga"/>
-                        <viewControllerLayoutGuide type="bottom" id="g9A-jz-IG0"/>
+                        <viewControllerLayoutGuide type="top" id="sHy-Qr-LPO"/>
+                        <viewControllerLayoutGuide type="bottom" id="c5u-1K-wue"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZmX-JQ-7mv">
+                    <view key="view" tag="1" contentMode="scaleToFill" id="dqA-0J-58d">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.84465640779999995" green="0.51457053419999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="eSI-0d-M2U"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TdS-po-fte" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gGB-Ag-lE2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2629" y="-1705"/>
+            <point key="canvasLocation" x="2618.840579710145" y="510.9375"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="VbH-Q7-ebW">
+        <!--Hot Rolled Structural Steel-->
+        <scene sceneID="xS4-0z-UQb">
             <objects>
-                <viewController storyboardIdentifier="StructuralHollowSections" id="Z5H-th-3Hs" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstItemInTabBarOpenRolledSections" id="XkX-MK-yRn" customClass="FirstItemInTabBarOpenRolledSections" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Mf8-ie-s0D"/>
-                        <viewControllerLayoutGuide type="bottom" id="6dE-us-QIs"/>
+                        <viewControllerLayoutGuide type="top" id="pqg-Db-0PG"/>
+                        <viewControllerLayoutGuide type="bottom" id="QgK-Aw-2I6"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="d4z-A0-wQS">
+                    <view key="view" contentMode="scaleToFill" id="vUK-GK-JTq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.11699737239999999" green="0.47154584389999998" blue="0.21541530310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Hot Rolled Structural Steel" image="unSelectedOpenSections" selectedImage="selectedOpenSections" id="tkg-QK-Oxp"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="evD-GY-8VJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HBU-u7-5OQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2629" y="-923"/>
+            <point key="canvasLocation" x="2618.840579710145" y="-222.32142857142856"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="cgI-9r-Qcj">
+        <!--New File Button Pressed Tab Controller-->
+        <scene sceneID="FCA-5N-cW7">
             <objects>
-                <viewController storyboardIdentifier="BuiltUpSections" id="PYX-3y-pGP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uYX-bR-vuz"/>
-                        <viewControllerLayoutGuide type="bottom" id="23E-sL-pBb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dka-fM-L6N">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mm8-FR-Xhf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tabBarController storyboardIdentifier="NewFileButtonPressedTabController" id="6Jh-Bi-BxK" customClass="NewFileButtonPressedTabController" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="euD-Iv-9IP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="selectedImageTintColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="XkX-MK-yRn" kind="relationship" relationship="viewControllers" id="52Q-lO-a47"/>
+                        <segue destination="QQi-QC-4VP" kind="relationship" relationship="viewControllers" id="vTd-Ru-VpU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GGb-NM-aI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2629" y="-204"/>
-        </scene>
-        <!--New File1 View Controller-->
-        <scene sceneID="vZQ-h1-Z6v">
-            <objects>
-                <viewController storyboardIdentifier="NewFile1ViewController" id="p6y-Me-L1y" customClass="NewFile1ViewController" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xCc-QA-SPP"/>
-                        <viewControllerLayoutGuide type="bottom" id="c3P-JZ-Oym"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zNv-Rx-hAP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.55634254220000001" green="0.97934550050000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oG5-83-2DW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1641" y="-711"/>
+            <point key="canvasLocation" x="1590" y="195"/>
         </scene>
     </scenes>
     <resources>
         <image name="backgroundImageMainScreen" width="1241" height="2688"/>
+        <image name="selectedOpenSections" width="26.333333969116211" height="26.333333969116211"/>
+        <image name="unSelectedOpenSections" width="26.333333969116211" height="26.333333969116211"/>
     </resources>
 </document>

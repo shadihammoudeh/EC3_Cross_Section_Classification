@@ -28,15 +28,15 @@ class CustomTabBar: UITabBar {
 
     func setupTabBar() {
         
-        let openRolledSectionsViewController = OpenRolledSections()
+        let firstItemInTabBar = FirstItemInTabBarOpenRolledSections()
         
-        let opeRolledSectionsBarItem = UITabBarItem(title: "Tab1", image: UIImage(named: "newFileButtonIcon"), selectedImage: UIImage(named: "newFileButtonIcon"))
+        let opeRolledSectionsBarItem = UITabBarItem(title: "Open Rolled Sections", image: UIImage(named: "openRolledSections"), tag: 0)
         
-        openRolledSectionsViewController.tabBarItem = opeRolledSectionsBarItem
+        firstItemInTabBar.tabBarItem = opeRolledSectionsBarItem
         
-        let structuralHollowSectionsViewController = StructuralHollowSections()
+        let structuralHollowSectionsViewController = SecondItemInTabBarHollowStructuralSections()
         
-        let structuralHollowSectionsBarItem = UITabBarItem(title: "Tab2", image: UIImage(named: "newFileButtonIcon"), selectedImage: UIImage(named: "newFileButtonIcon"))
+        let structuralHollowSectionsBarItem = UITabBarItem(title: "Structural Sections", image: UIImage(named: "openRolledSections"), tag: 1)
         
         structuralHollowSectionsViewController.tabBarItem = structuralHollowSectionsBarItem
         

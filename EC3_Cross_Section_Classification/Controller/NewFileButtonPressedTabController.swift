@@ -8,23 +8,55 @@
 
 import UIKit
 
-class NewFile1ViewController: UIViewController, UINavigationBarDelegate, UITabBarDelegate {
+class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDelegate {
     
     let navigationBar = CustomNavigationBar(navigationBarTitle: "'Blue Book' Catalogue Sections", leftBarButtonTarget: self, leftBarButtonSelector: #selector(buttonPressed(sender:)))
     
-    let tabBar = CustomTabBar()
-
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         navigationBar.delegate = self
         
-        tabBar.delegate = self
-        
         view.addSubview(navigationBar)
         
-        view.addSubview(tabBar)
+        let firstViewControllerInTabBar = FirstItemInTabBarOpenRolledSections()
+        
+        // The below lines of code add required images for the normal and selected state for the first tabBarItem:
+        
+        firstViewControllerInTabBar.tabBarItem.image = UIImage(named: "notSelectedStateOpenSections")?.withRenderingMode(.alwaysOriginal)
+        
+        firstViewControllerInTabBar.tabBarItem.selectedImage = UIImage(named: "selectedOpenSections")?.withRenderingMode(.alwaysOriginal)
+        
+        // The below line of code sets the title for the first tabBarItem:
+        
+        firstViewControllerInTabBar.tabBarItem.title = "Hot Rolled Structural Steel"
+        
+        // The below line of code sets the text colour of UIBarItem in normal state (i.e., when not selected):
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for:.normal)
+        
+        // The below line of code sets the text colour of UIBarItem in selected state (i.e., when selected):
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.yellow], for:.selected)
+        
+        firstViewControllerInTabBar.tabBarItem.tag = 0
+        
+        let secondViewControllerInTabBar = SecondItemInTabBarHollowStructuralSections()
+        
+        secondViewControllerInTabBar.tabBarItem.image = UIImage(named: "notSelectedHollowSections")?.withRenderingMode(.alwaysOriginal)
+        
+        secondViewControllerInTabBar.tabBarItem.selectedImage = UIImage(named: "selectedHollowSections")?.withRenderingMode(.alwaysOriginal)
+
+        secondViewControllerInTabBar.tabBarItem.title = "Structural Hollow Sections"
+        
+        secondViewControllerInTabBar.tabBarItem.tag = 1
+        
+        let tabBarList = [firstViewControllerInTabBar, secondViewControllerInTabBar]
+        
+        viewControllers = tabBarList
+        
+//        firstViewControllerInTabBar.tabBarItem.image = UIImage(named: "iconfinder_aluminum_steel_1572637")
         
         setupConstraints()
 
@@ -60,17 +92,10 @@ class NewFile1ViewController: UIViewController, UINavigationBarDelegate, UITabBa
             
         }
         
-        // The below code lines setup the needed constraints for the tabBar:
-        
-        tabBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
-        tabBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        
-        tabBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
     }
     
     @objc func buttonPressed
+        
         (sender : UIButton) {
         
         print("button pressed")

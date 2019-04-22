@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CF3310782267ACA9002D4C4D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3310772267ACA9002D4C4D /* CustomTabBar.swift */; };
-		CF33107A2267AE77002D4C4D /* OpenRolledSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3310792267AE77002D4C4D /* OpenRolledSections.swift */; };
-		CF33107C2267AE8E002D4C4D /* StructuralHollowSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33107B2267AE8E002D4C4D /* StructuralHollowSections.swift */; };
+		CF33107A2267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3310792267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift */; };
+		CF33107C2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33107B2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift */; };
 		CF4DBAE422615032000FCED4 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DBAE322615032000FCED4 /* CustomNavigationBar.swift */; };
 		CF6DB1C72257E6B700C69B4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DB1C62257E6B700C69B4C /* AppDelegate.swift */; };
 		CF6DB1C92257E6B700C69B4C /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6DB1C82257E6B700C69B4C /* MainScreen.swift */; };
@@ -18,7 +18,7 @@
 		CF6DB1D12257E6B800C69B4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6DB1D02257E6B800C69B4C /* Assets.xcassets */; };
 		CF6DB1D42257E6B800C69B4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6DB1D22257E6B800C69B4C /* LaunchScreen.storyboard */; };
 		CF6DB1DD2257EB5700C69B4C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6DB1DC2257EB5700C69B4C /* StoreKit.framework */; };
-		CF8EC4D92263CBB800445A0C /* NewFile1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8EC4D82263CBB800445A0C /* NewFile1ViewController.swift */; };
+		CF8EC4D92263CBB800445A0C /* NewFileButtonPressedTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8EC4D82263CBB800445A0C /* NewFileButtonPressedTabController.swift */; };
 		CFCCC7A0225BF136005C5F6A /* CustomButtom.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCCC79F225BF136005C5F6A /* CustomButtom.swift */; };
 		CFDBA457225E8BD200631F28 /* ButtonsAndIphonesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDBA456225E8BD200631F28 /* ButtonsAndIphonesData.swift */; };
 		D77E62E93B897408C3B8DF96 /* Pods_EC3_Cross_Section_Classification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71784A0D59CB20F7BEBABC6D /* Pods_EC3_Cross_Section_Classification.framework */; };
@@ -29,8 +29,8 @@
 		71784A0D59CB20F7BEBABC6D /* Pods_EC3_Cross_Section_Classification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EC3_Cross_Section_Classification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D35147DC051ECC8EB7D1B7 /* Pods-EC3_Cross_Section_Classification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC3_Cross_Section_Classification.debug.xcconfig"; path = "Target Support Files/Pods-EC3_Cross_Section_Classification/Pods-EC3_Cross_Section_Classification.debug.xcconfig"; sourceTree = "<group>"; };
 		CF3310772267ACA9002D4C4D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		CF3310792267AE77002D4C4D /* OpenRolledSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenRolledSections.swift; sourceTree = "<group>"; };
-		CF33107B2267AE8E002D4C4D /* StructuralHollowSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuralHollowSections.swift; sourceTree = "<group>"; };
+		CF3310792267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstItemInTabBarOpenRolledSections.swift; sourceTree = "<group>"; };
+		CF33107B2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondItemInTabBarHollowStructuralSections.swift; sourceTree = "<group>"; };
 		CF4DBAE322615032000FCED4 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		CF6DB1C32257E6B700C69B4C /* EC3_Cross_Section_Classification.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EC3_Cross_Section_Classification.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF6DB1C62257E6B700C69B4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +41,7 @@
 		CF6DB1D32257E6B800C69B4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF6DB1D52257E6B800C69B4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF6DB1DC2257EB5700C69B4C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		CF8EC4D82263CBB800445A0C /* NewFile1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFile1ViewController.swift; sourceTree = "<group>"; };
+		CF8EC4D82263CBB800445A0C /* NewFileButtonPressedTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFileButtonPressedTabController.swift; sourceTree = "<group>"; };
 		CFCCC79F225BF136005C5F6A /* CustomButtom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtom.swift; sourceTree = "<group>"; };
 		CFDBA456225E8BD200631F28 /* ButtonsAndIphonesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsAndIphonesData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,10 +121,10 @@
 		CF6DB1DF2257F45600C69B4C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CF3310792267AE77002D4C4D /* OpenRolledSections.swift */,
-				CF33107B2267AE8E002D4C4D /* StructuralHollowSections.swift */,
-				CF8EC4D82263CBB800445A0C /* NewFile1ViewController.swift */,
 				CF6DB1C82257E6B700C69B4C /* MainScreen.swift */,
+				CF8EC4D82263CBB800445A0C /* NewFileButtonPressedTabController.swift */,
+				CF3310792267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift */,
+				CF33107B2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -265,14 +265,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF8EC4D92263CBB800445A0C /* NewFile1ViewController.swift in Sources */,
-				CF33107C2267AE8E002D4C4D /* StructuralHollowSections.swift in Sources */,
+				CF8EC4D92263CBB800445A0C /* NewFileButtonPressedTabController.swift in Sources */,
+				CF33107C2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift in Sources */,
 				CF4DBAE422615032000FCED4 /* CustomNavigationBar.swift in Sources */,
 				CF6DB1C92257E6B700C69B4C /* MainScreen.swift in Sources */,
 				CF6DB1CF2257E6B700C69B4C /* EC3_Cross_Section_Classification.xcdatamodeld in Sources */,
 				CF3310782267ACA9002D4C4D /* CustomTabBar.swift in Sources */,
 				CF6DB1C72257E6B700C69B4C /* AppDelegate.swift in Sources */,
-				CF33107A2267AE77002D4C4D /* OpenRolledSections.swift in Sources */,
+				CF33107A2267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift in Sources */,
 				CFCCC7A0225BF136005C5F6A /* CustomButtom.swift in Sources */,
 				CFDBA457225E8BD200631F28 /* ButtonsAndIphonesData.swift in Sources */,
 			);
