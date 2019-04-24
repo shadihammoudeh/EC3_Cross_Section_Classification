@@ -10,16 +10,15 @@ import UIKit
 
 class MainScreen: UIViewController, UINavigationBarDelegate {
     
-    // The below line of code connects the background image as an IBOutlet to this ViewController:
+    // The below line of code connects the background image as an IBOutlet to this ViewController, in order to be able to apply constraints to it later on:
     
     @IBOutlet weak var backgroundImage: UIImageView!
     
-    // Thie below line of code creates an instance for the NavigationBar from the CustomNavigationBar class:
+    // Thie below line of code creates an instance for the NavigationBar from the CustomNavigationBar.swift file:
     
     let navigationBar = CustomNavigationBar(navigationBarTitle: "Classification of Cross Sections to Eurocode 3")
-    
 
-    // The only input that is hard-coded in the below Buttons Instances is buttonTag:
+    // The only input that is hard-coded in the below Buttons Instances which are created from the CustomButton.swift file is buttonTag:
     
     let newFileButton = CustomButton(buttonTitle: ButtonsAndIphonesData().buttonTitle["newFileButtonTitle"]!, buttonIconImage: ButtonsAndIphonesData().buttonIconImage["newFileButtonIcon"]!, buttonTag: 1, buttonHeight: ButtonsAndIphonesData().buttonHeight["newFileButton"]!, buttonWidth: ButtonsAndIphonesData().buttonWidth["newFileButton"]!, buttonSelector: #selector(buttonPressed(sender:)), buttonTarget: self)
 
@@ -37,7 +36,7 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         
         // The below lines of code calculate the top and bottom height of the safeAreaInsets, which need to be substracted from the total screen height in order to get the remaining total height of the safeArea.
         // When the bounds change for a view controller's view, the view adjusts the positions of its subviews and then the system calls this method. However, this method being called does not indicate that the individual layouts of the view's subviews have been adjusted. Each subview is responsible for adjusting its own layout.
-        //Your view controller can override this method to make changes after the view lays out its subviews. The default implementation of this method does nothing.
+        // Your view controller can override this method to make changes after the view lays out its subviews. The default implementation of this method does nothing.
 
         var topSafeArea: CGFloat
         
@@ -59,17 +58,17 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         
         // This is the correct point to insert the below code in order to get the height of the navigation bar as well as spacings between buttons (i.e., after it has been added as a subview to this View Controller):
         
-        let navigationBarHeight = navigationBar.frame.size.height
-        
-        print(navigationBarHeight)
+        let navigationBarHeight = navigationBar.frame.size.height // here we are printing the height of the NavigationBar.
         
         let totalIphoneScreenHeight = self.view.frame.size.height
         
         let totalIphoneScreenWidth = self.view.frame.size.width
         
-        let safeAreaHeight = totalIphoneScreenHeight - topSafeArea - navigationBarHeight - bottomSafeArea
+        let safeAreaHeight = totalIphoneScreenHeight - topSafeArea - navigationBarHeight - bottomSafeArea // this is the total height that can be used to present our UIElements, which will not be obstructed by any other thing.
         
-        let spacingsBetweenButtons = (safeAreaHeight - ButtonsAndIphonesData().buttonHeight["newFileButton"]! - ButtonsAndIphonesData().buttonHeight["openFileButton"]! - ButtonsAndIphonesData().buttonHeight["documentationButton"]! - ButtonsAndIphonesData().buttonHeight["emailUsButton"]!) / 5
+        let spacingsBetweenButtons = (safeAreaHeight - ButtonsAndIphonesData().buttonHeight["newFileButton"]! - ButtonsAndIphonesData().buttonHeight["openFileButton"]! - ButtonsAndIphonesData().buttonHeight["documentationButton"]! - ButtonsAndIphonesData().buttonHeight["emailUsButton"]!) / 5 // Here we are calculating the equal spacings between buttons from the bottom of the navigation bar to the top of the bottom safeArea.
+        
+        // Below we are applying the needed top and bottom constraints to our buttons, the reason we are applying the constraints here not inside the function is to be able to access the spacingBetweenButtons constant:
         
         newFileButton.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: spacingsBetweenButtons).isActive = true
         
@@ -89,11 +88,11 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         
         super.viewDidLoad()
         
-        // The below line of code sets this ViewController as teh delegate for the navigationBar instance which have been created from the CustomNavigationBar class:
+        // The below line of code sets this ViewController as the delegate for the navigationBar instance which have been created from the CustomNavigationBar class:
         
         navigationBar.delegate = self
         
-        // The below line of code adds the navigationBar as a subview to this current ViewController:
+        // The below line of code adds the navigationBar as well as the custom buttons as subviews to this current ViewController:
         
         view.addSubview(navigationBar)
         
@@ -115,9 +114,9 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         
         if sender.tag == 1 {
             
-            print("button 1 has been pressed")
+            newFileButton.shake() // This implements the shake function to the button.
             
-            newFileButton.shake()
+            // The below line of code displays the next ViewController to be displayed whenever the user presses this button:
             
             guard let nextViewControllerToGoTo = storyboard?.instantiateViewController(withIdentifier: "NewFileButtonPressedTabController") else {
                 
