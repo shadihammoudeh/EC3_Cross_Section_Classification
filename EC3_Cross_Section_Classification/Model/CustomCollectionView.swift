@@ -9,6 +9,8 @@
 import UIKit
 
 class CustomCollectionView: UICollectionView {
+
+    
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         
@@ -22,25 +24,41 @@ class CustomCollectionView: UICollectionView {
         
     }
     
-    convenience init(topEdgeInset topInset: CGFloat, leftEdgeInset leftInset: CGFloat, bottomEdgeInset bottomInset: CGFloat, rightEdgeInset rightInset: CGFloat, widthOfUICollectionView width: CGFloat, horizontalSpacingsBetweenCells horizontalSpacings: CGFloat, numberOfCellsPerRow horizontalNumberOfCells: CGFloat, heightOfUICollectionView height: CGFloat, verticalSpacingsBetweenCells verticalSpacings: CGFloat, numberOfCellsPerColumn verticalNumberOfCells: CGFloat, minimumVerticalSpacingsBetweenCells minimumVertical: CGFloat, minimumHorizontalSpacingsBetweenCells minimumHorizontal: CGFloat) {
+    convenience init(topEdgeInset topInset: CGFloat, bottomEdgeInset bottomInset: CGFloat, leftEdgeInset leftInset: CGFloat, rightEdgeInset rightInset: CGFloat, screenWdith width: CGFloat, screenHeight height: CGFloat, minimumCellsHorizontalSpacing cellsHorizontalSpacing: CGFloat, minimumCellsVerticalSpacing cellsVerticalSpacing: CGFloat, numberOfCellsPerRow cellsPerRow: CGFloat, hostView: UIView, hostViewDelegate: UICollectionViewDelegate, hostViewDataSource: UICollectionViewDataSource) {
         
-        self.init()
+        self.init(frame: {
+            
+            CGRect(x: 0, y: 0, width: hostView.frame.width, height: hostView.frame.height)
+            
+        }(), collectionViewLayout: {
+            
+            let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            
+            layout.sectionInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+            
+            layout.minimumLineSpacing = cellsVerticalSpacing
+            
+            layout.minimumInteritemSpacing = cellsHorizontalSpacing
+            
+            let widthOfCollectionViewCell: CGFloat = (width - (leftInset + rightInset + cellsHorizontalSpacing)) / cellsPerRow
+            
+            layout.itemSize = CGSize(width: widthOfCollectionViewCell, height: 200)
+            
+            return layout
+            
+        }()
+            
+        )
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        dataSource = hostViewDataSource
         
-        layout.sectionInset = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+        delegate = hostViewDelegate
         
-        let cellWidth = ((width) - (layout.sectionInset.left + layout.sectionInset.right + horizontalSpacings)) / horizontalNumberOfCells
+        backgroundColor = .red
         
-        let cellHeight = ((height) - (layout.sectionInset.top + layout.sectionInset.bottom + verticalSpacings)) / verticalNumberOfCells
+        register(UICollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
         
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        
-        layout.minimumLineSpacing = minimumVertical
-        
-        layout.minimumInteritemSpacing = minimumHorizontal
-        
-        
+        hostView.addSubview(self)
         
     }
     
