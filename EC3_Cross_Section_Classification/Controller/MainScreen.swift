@@ -16,7 +16,7 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
     
     // Thie below line of code creates an instance for the NavigationBar from the CustomNavigationBar.swift file:
     
-    let navigationBar = CustomNavigationBar(navigationBarTitle: "Classification of Cross Sections to Eurocode 3")
+    let navigationBar = CustomNavigationBar(navigationBarTitle: "Classification of Cross Sections to Eurocode 3", navigationBarIsTranslucent: true)
 
     // The only input that is hard-coded in the below Buttons Instances which are created from the CustomButton.swift file is buttonTag:
     
@@ -25,8 +25,9 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
     let openButton = CustomButton(buttonTitle: ButtonsAndIphonesData().buttonTitle["openFileButtonTitle"]!, buttonIconImage: ButtonsAndIphonesData().buttonIconImage["openFileButtonIcon"]!, buttonTag: 2, buttonHeight: ButtonsAndIphonesData().buttonHeight["openFileButton"]!, buttonWidth: ButtonsAndIphonesData().buttonWidth["openFileButton"]!, buttonSelector: #selector(buttonPressed(sender:)), buttonTarget: self)
 
     let documentationButton = CustomButton(buttonTitle: ButtonsAndIphonesData().buttonTitle["documentationButtonTitle"]!, buttonIconImage: ButtonsAndIphonesData().buttonIconImage["documentationButtonIcon"]!, buttonTag: 3, buttonHeight: ButtonsAndIphonesData().buttonHeight["documentationButton"]!, buttonWidth: ButtonsAndIphonesData().buttonWidth["documentationButton"]!, buttonSelector: #selector(buttonPressed(sender:)), buttonTarget: self)
-    
+
     let emailUsButton = CustomButton(buttonTitle: ButtonsAndIphonesData().buttonTitle["emailUsButtonTitle"]!, buttonIconImage: ButtonsAndIphonesData().buttonIconImage["emailUsButtonIcon"]!, buttonTag: 4, buttonHeight: ButtonsAndIphonesData().buttonHeight["emailUsButton"]!, buttonWidth: ButtonsAndIphonesData().buttonWidth["emailUsButton"]!, buttonSelector: #selector(buttonPressed(sender:)), buttonTarget: self)
+    
     
     // The viewDidLayoutSubviews() gets called to notify the view controller that its view has just laid out its subviews:
     
@@ -37,7 +38,7 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         // The below lines of code calculate the top and bottom height of the safeAreaInsets, which need to be substracted from the total screen height in order to get the remaining total height of the safeArea.
         // When the bounds change for a view controller's view, the view adjusts the positions of its subviews and then the system calls this method. However, this method being called does not indicate that the individual layouts of the view's subviews have been adjusted. Each subview is responsible for adjusting its own layout.
         // Your view controller can override this method to make changes after the view lays out its subviews. The default implementation of this method does nothing.
-
+        
         var topSafeArea: CGFloat
         
         var bottomSafeArea: CGFloat
@@ -71,11 +72,11 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         // Below we are applying the needed top and bottom constraints to our buttons, the reason we are applying the constraints here not inside the function is to be able to access the spacingBetweenButtons constant:
         
         newFileButton.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: spacingsBetweenButtons).isActive = true
-        
+
         openButton.topAnchor.constraint(equalTo: newFileButton.bottomAnchor, constant: spacingsBetweenButtons).isActive = true
-        
+
         documentationButton.topAnchor.constraint(equalTo: openButton.bottomAnchor, constant: spacingsBetweenButtons).isActive = true
-        
+
         emailUsButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: (-1*spacingsBetweenButtons)).isActive = true
         
         // safe area values are now available to use
@@ -97,11 +98,11 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         view.addSubview(navigationBar)
         
         view.addSubview(newFileButton)
-        
+
         view.addSubview(openButton)
-        
+
         view.addSubview(documentationButton)
-        
+
         view.addSubview(emailUsButton)
         
         // The below Method gets called to setup the needed constraints for the NavigationBar, backgroundImage, and the Buttons:
@@ -185,11 +186,11 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         // The below lines of code defines some of the constraints for the UIButtons:
         
         newFileButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
+
         openButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
+
         documentationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
+
         emailUsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
     }

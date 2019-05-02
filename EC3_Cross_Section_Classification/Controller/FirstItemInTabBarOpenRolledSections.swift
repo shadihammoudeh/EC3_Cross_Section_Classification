@@ -9,55 +9,40 @@
 import UIKit
 
 class FirstItemInTabBarOpenRolledSections: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-
+    
+    var tabBarControllerStatusBarPlusNavigationBarHeight: CGFloat?
+    
     override func viewDidLoad() {
-        
+    
         super.viewDidLoad()
+        
+        print("FirstTabBarItem viewDidLoad()")
         
         view.backgroundColor = .black
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLayoutSubviews() {
         
-        super.viewWillAppear(animated)
+        print("FirstTabBarItem viewDidLayoutSubviews()")
         
-//        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        // The below line of code prints out the height of the tab bar inside the tabBarController including height of bottom safeAreaInset:
         
-        // The below line of code specifies the top. right, bottom and left paddings for the cells (the one at the very top and very bottom are the cells that get affected by top and bottom values, all cells get affected by left and right values) inside the UICollectionView:
+        print(tabBarController?.tabBar.frame.height)
         
-//        layout.sectionInset = UIEdgeInsets(top: 45, left: 20, bottom: 50, right: 20)
+        let customCollectionViewHeight: CGFloat = view.frame.size.height - (tabBarController?.tabBar.frame.height)! - tabBarControllerStatusBarPlusNavigationBarHeight!
         
-        // The below line of code calculates the width of each cell assuming that we are going to have two
+        let customCollectionView = CustomCollectionView(startingHoriztonalCoordinateOfCollectionView: 0, startingVerticalCoordinateOfCollectionView: tabBarControllerStatusBarPlusNavigationBarHeight!, heightOfCollectionView: customCollectionViewHeight, viewCollectionViewWillBeAddedTo: self.view, collectionViewLayoutTopEdgeInset: 20, collectionViewLayoutLeftEdgeInset: 20, collectionViewLayoutBottomEdgeInset: 20, collectionViewLayoutRightEdgeInset: 20, collectionViewLayoutCellsMinimumVerticalSpacings: 20, collectionViewLayoutCellsMinimumHorizontalSpacings: 20, numberOfCellsPerRow: 2, numberOfCellsPerColumn: 4, hostViewDataSource: self, hostViewDelegate: self)
         
-//        func calculateEachCellWidthInsideCollectionView (numberOfCellsPerRow numberOfCells: CGFloat, middleSpacingBetweenCells spacing: CGFloat) -> CGFloat {
-//
-//            let cellWidth = ((view.frame.width) - (layout.sectionInset.left + layout.sectionInset.right + spacing)) / numberOfCells
-//
-//            return cellWidth
-//
-//        }
-        
-        // The below line of code specifies the size of each cell to be displayed inside the UICollectionView:
-        
-//        layout.itemSize = CGSize(width: calculateEachCellWidthInsideCollectionView(numberOfCellsPerRow: 2, middleSpacingBetweenCells: 20), height: 80)
-        
-        // The below line of code defines the minimum vertical spacings between cells:
-        
-//        layout.minimumLineSpacing = 20
-        
-        // The below line of code defines the minimum horizontal spacings between cells:
-        
-//        layout.minimumInteritemSpacing = 20
-        
-        let myCollectionView = CustomCollectionView(topEdgeInset: 20, bottomEdgeInset: 20, leftEdgeInset: 20, rightEdgeInset: 20, screenWdith: self.view.frame.width, screenHeight: self.view.frame.height, minimumCellsHorizontalSpacing: 20, minimumCellsVerticalSpacing: 20, numberOfCellsPerRow: 2, hostView: self.view, hostViewDelegate: self, hostViewDataSource: self)
+        view.addSubview(customCollectionView)
         
     }
     
-
+    // The below methods are required to adopt the UICollectionViewDataSource and UICollectionViewDelegate protocols:
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 50
+        return 8
         
     }
     
@@ -76,7 +61,6 @@ class FirstItemInTabBarOpenRolledSections: UIViewController, UICollectionViewDat
         return 1
         
     }
-
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 

@@ -28,26 +28,26 @@ class CustomButton: UIButton {
         
     }
     
-    convenience init(buttonTitle: String, buttonIconImage: String, buttonTag tag: Int, buttonHeight: CGFloat, buttonWidth: CGFloat, buttonSelector: Selector, buttonTarget: Any?) {
+    convenience init(buttonTitle title: String, buttonIconImage image: String, buttonTag tag: Int, buttonHeight height: CGFloat, buttonWidth width: CGFloat, buttonSelector selector: Selector, buttonTarget target: Any?) {
         
         self.init()
         
-        setTitle(buttonTitle, for: .normal)
+        setTitle(title, for: .normal)
         
-        if let buttonImage = UIImage(named: buttonIconImage) {
+        if let buttonImage = UIImage(named: image) {
         
         setImage(buttonImage, for: .normal)
             
         }
         
-        addTarget(buttonTarget, action: buttonSelector, for: .touchUpInside)
-        
-        setConstraints(buttonHeight: buttonHeight, buttonWidth: buttonWidth)
-        
-        self.tag = tag
+        addTarget(target, action: selector, for: .touchUpInside)
         
         setupButton()
+                
+        setConstraints(buttonHeight: height, buttonWidth: width)
         
+        self.tag = tag
+
     }
     
     func setupButton() {
@@ -124,14 +124,9 @@ class CustomButton: UIButton {
         
         translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            
-            heightAnchor.constraint(equalToConstant: height),
-            
-            widthAnchor.constraint(equalToConstant: width)
+        heightAnchor.constraint(equalToConstant: height).isActive = true
         
-            
-            ])
+        widthAnchor.constraint(equalToConstant: width).isActive = true
         
     }
     

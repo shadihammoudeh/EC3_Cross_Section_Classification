@@ -28,9 +28,11 @@ class CustomNavigationBar: UINavigationBar {
         
     }
     
-    convenience init(navigationBarTitle title: String) {
+    convenience init(navigationBarTitle title: String, navigationBarIsTranslucent: Bool) {
         
         self.init()
+        
+        isTranslucent = navigationBarIsTranslucent
         
         let newNavigationBarItem = UINavigationItem()
         
@@ -46,9 +48,11 @@ class CustomNavigationBar: UINavigationBar {
 
     }
     
-    convenience init(navigationBarTitle title: String, leftBarButtonTarget target: Any?, leftBarButtonSelector selector: Selector) {
+    convenience init(navigationBarTitle title: String, leftBarButtonTarget target: Any?, leftBarButtonSelector selector: Selector, navigationBarIsTranslucent: Bool) {
         
         self.init()
+        
+        isTranslucent = navigationBarIsTranslucent
         
         let newNavigationBarItem = UINavigationItem()
         
@@ -77,9 +81,7 @@ class CustomNavigationBar: UINavigationBar {
     }
     
     func setupNavigationBar() {
-                
-        isTranslucent = true
-        
+
         backgroundColor = .black
         
         barStyle = .blackTranslucent
