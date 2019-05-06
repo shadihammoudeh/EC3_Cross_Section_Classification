@@ -10,15 +10,19 @@ import UIKit
 
 class FirstItemInTabBarOpenRolledSections: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var tabBarControllerStatusBarPlusNavigationBarHeight: CGFloat?
+    // The below Variable gets its value from the NewFileButtonPressedTabController UITabController:
+    
+    var tabBarControllerStatusBarPlusNavigationBarHeight: CGFloat = 0
+    
+    let cellTitleArray = ["Universal beams (UB)", "Universal columns (UC)", "Universal bearing piles (UBP)", "Parallel flange channels (PFC)", "Equal leg angles (L)", "Unequal leg angles (L)", "Tees (T) split from UB", "Tees (T) split from UC"]
+    
+   let cellImageArray = ["3D Universal Beam (UB)","3D Universal Column (UC)","3D Universal Bearing Pile (UBP)","3D Parallel Flange Channels (PFC)","3D Equal Angle Leg (L)","3D Uequal Angle Leg (L)","3D Tees (T) Split from UB","3D Tees (T) Split from UC"]
     
     override func viewDidLoad() {
-    
+        
         super.viewDidLoad()
         
         print("FirstTabBarItem viewDidLoad()")
-        
-        view.backgroundColor = .black
         
     }
     
@@ -26,13 +30,15 @@ class FirstItemInTabBarOpenRolledSections: UIViewController, UICollectionViewDat
         
         print("FirstTabBarItem viewDidLayoutSubviews()")
         
-        // The below line of code prints out the height of the tab bar inside the tabBarController including height of bottom safeAreaInset:
+        // The below line of code calculates the height of the customCollectionView by substracting the total height of this view which is inside the UITabController class (thus, its total height is the total height of the iPhonescreen minus the height of the tabBar) minus the height of the UITabBarController class status bar plus its NavigationBar:
         
-        print(tabBarController?.tabBar.frame.height)
+        let customCollectionViewHeight: CGFloat = view.frame.size.height  - tabBarControllerStatusBarPlusNavigationBarHeight
         
-        let customCollectionViewHeight: CGFloat = view.frame.size.height - (tabBarController?.tabBar.frame.height)! - tabBarControllerStatusBarPlusNavigationBarHeight!
+        print(customCollectionViewHeight)
         
-        let customCollectionView = CustomCollectionView(startingHoriztonalCoordinateOfCollectionView: 0, startingVerticalCoordinateOfCollectionView: tabBarControllerStatusBarPlusNavigationBarHeight!, heightOfCollectionView: customCollectionViewHeight, viewCollectionViewWillBeAddedTo: self.view, collectionViewLayoutTopEdgeInset: 20, collectionViewLayoutLeftEdgeInset: 20, collectionViewLayoutBottomEdgeInset: 20, collectionViewLayoutRightEdgeInset: 20, collectionViewLayoutCellsMinimumVerticalSpacings: 20, collectionViewLayoutCellsMinimumHorizontalSpacings: 20, numberOfCellsPerRow: 2, numberOfCellsPerColumn: 4, hostViewDataSource: self, hostViewDelegate: self)
+        print(view.frame.size.height)
+        
+        let customCollectionView = CustomCollectionView(startingHoriztonalCoordinateOfCollectionView: 0, startingVerticalCoordinateOfCollectionView: tabBarControllerStatusBarPlusNavigationBarHeight, heightOfCollectionView: customCollectionViewHeight, viewCollectionViewWillBeAddedTo: self.view, collectionViewLayoutTopEdgeInset: 20, collectionViewLayoutLeftEdgeInset: 20, collectionViewLayoutBottomEdgeInset: 20, collectionViewLayoutRightEdgeInset: 20, collectionViewLayoutCellsMinimumVerticalSpacings: 20, collectionViewLayoutCellsMinimumHorizontalSpacings: 20, numberOfCellsPerRow: 2, numberOfCellsPerColumn: 4, hostViewDataSource: self, hostViewDelegate: self, hexCodeColorForBackgroundColor: "#020301")
         
         view.addSubview(customCollectionView)
         
@@ -48,10 +54,12 @@ class FirstItemInTabBarOpenRolledSections: UIViewController, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath)
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! CustomCollectionViewCell
         
-        myCell.backgroundColor = .blue
+        myCell.setupCustomCellElements(cellImageName: cellImageArray[indexPath.item], cellTitleTextColour: "#797D70", cellTitleTextSize: 15, cellTitleFontType: "Apple SD Gothic Neo", cellTitle: cellTitleArray[indexPath.item], cellHexColorCode: "#E8FFB5", cellCornerRadius: 3, cellShadowOffsetWidth: 0, cellShadowOffsetHeight: 1.5, cellShadowColor: "#9CCC38", cellShadowRadius: 3, cellShadowOpacity: 0.6)
         
+        print(myCell.frame.size.height)
+
         return myCell
         
     }
@@ -61,11 +69,11 @@ class FirstItemInTabBarOpenRolledSections: UIViewController, UICollectionViewDat
         return 1
         
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         print("User tapped on itme \(indexPath.row)")
-
+        
     }
     
 }

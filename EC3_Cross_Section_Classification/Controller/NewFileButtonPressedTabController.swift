@@ -8,6 +8,8 @@
 
 import UIKit
 
+import ChameleonFramework
+
 // The below class acts the TabBar Controller, and it is the view that appears immediately after the user presses on the New File button, this view manages what should get displayed when the user choose an item from the TabBar:
 
 class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDelegate {
@@ -27,10 +29,70 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
         super.viewDidLoad()
         
         print("Tab Controller viewDidLoad()")
-    
+        
         navigationBar.delegate = self
-                
+        
         view.addSubview(navigationBar)
+        
+        setupTabBarItems()
+
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
+        
+        print("Tab Controller viewDidLayoutSubView()")
+        
+        setupNavigationBarConstraints()
+        
+        tabBar.isTranslucent = false
+        
+//         The below line of code calculates the total height of the tabControllerView statusBar as well as its NavigationBar and pass the total to the FirstItemInTabBarOpenRolledSections ViewController:
+        
+        firstViewControllerInTabBar.tabBarControllerStatusBarPlusNavigationBarHeight = navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print("Tab Controller viewWillAppear()")
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        print("Tab Controller viewWillDisappear")
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        print("Tab Controller viewDidDisappear")
+        
+    }
+    
+    func setupNavigationBarConstraints() {
+        
+        // The below lines of code set the constraints related to the Navigation Bar:
+        
+        navigationBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        
+        navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
+        if #available(iOS 11, *) {
+            
+            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            
+        } else {
+            
+            navigationBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            
+        }
+        
+    }
+    
+    func setupTabBarItems() {
         
         // The below lines of code add required images for the normal and selected state for the first and second tabBarItem:
         
@@ -67,69 +129,6 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
         let tabBarList = [firstViewControllerInTabBar, secondViewControllerInTabBar]
         
         viewControllers = tabBarList
-
-    }
-    
-    override func viewDidLayoutSubviews() {
-        
-        super.viewDidLayoutSubviews()
-        
-        print("Tab Controller viewDidLayoutSubView()")
-        
-        setupConstraints()
-        
-        firstViewControllerInTabBar.tabBarControllerStatusBarPlusNavigationBarHeight = navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        print("Tab Controller viewWillAppear()")
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-
-        print("Tab Controller viewWillDisappear")
-        
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        
-        print("Tab Controller viewDidDisappear")
-        
-    }
-    
-    func setupConstraints() {
-        
-        // The below lines of code set the constraints related to the Navigation Bar:
-        
-        navigationBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        
-        navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        if #available(iOS 11, *) {
-            
-            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-            
-        } else {
-            
-            navigationBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-            
-        }
-        
-        // The below lines of code set the constraints for the first item in the TabBar (i.e., FirstItemInTabBarOpenRolledSections.swift file). Since we would like to constraint its UICollectionView to the bottom of the NavigationBar of this View as well as the top of the TabBar of this View:
-        
-//        firstViewControllerInTabBar.view.translatesAutoresizingMaskIntoConstraints = false
-//
-//        firstViewControllerInTabBar.view.topAnchor.constraint(equalTo: navigationBar.bottomAnchor).isActive = true
-//
-//        firstViewControllerInTabBar.view.bottomAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
-//
-//        firstViewControllerInTabBar.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-//
-//        firstViewControllerInTabBar.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         
     }
     
@@ -154,9 +153,9 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
     // The below Method is required in order to attach the custom Navigation Bar to the bottom of the status bar and make them appear as one entity:
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
-
+        
         return UIBarPosition.topAttached
-
+        
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -164,10 +163,10 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
         if tabBarItem.tag == 0 {
             
             print("TabBarItem with tag 0 has been pressed")
-
+            
         }
-        
-        else if tabBarItem.tag == 1 {
+            
+        else {
             
             print("TabBarItem with tag 1 has been pressed")
             
