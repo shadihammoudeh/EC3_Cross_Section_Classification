@@ -59,7 +59,7 @@ class FirstItemInTabBarOpenRolledSections: UIViewController, UICollectionViewDat
         myCell.setupCustomCellElements(cellImageName: cellImageArray[indexPath.item], cellTitleTextColour: "#797D70", cellTitleTextSize: 15, cellTitleFontType: "Apple SD Gothic Neo", cellTitle: cellTitleArray[indexPath.item], cellHexColorCode: "#E8FFB5", cellCornerRadius: 3, cellShadowOffsetWidth: 0, cellShadowOffsetHeight: 1.5, cellShadowColor: "#9CCC38", cellShadowRadius: 3, cellShadowOpacity: 0.6)
         
         print(myCell.frame.size.height)
-
+        
         return myCell
         
     }
@@ -72,7 +72,13 @@ class FirstItemInTabBarOpenRolledSections: UIViewController, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print("User tapped on itme \(indexPath.row)")
+        if indexPath.row == 0 {
+            
+            let viewControllerToGoTo = UniversalBeamsViewController()
+            
+            present(viewControllerToGoTo, animated: true, completion: nil)
+            
+        }
         
     }
     

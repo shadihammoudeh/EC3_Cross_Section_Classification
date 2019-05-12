@@ -76,6 +76,33 @@
             </objects>
             <point key="canvasLocation" x="2618.840579710145" y="-222.32142857142856"/>
         </scene>
+        <!--Universal Beams View Controller-->
+        <scene sceneID="E6J-e5-36P">
+            <objects>
+                <viewController storyboardIdentifier="UniversalBeamsViewController" id="i2F-gJ-H6j" customClass="UniversalBeamsViewController" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ft7-s5-vza"/>
+                        <viewControllerLayoutGuide type="bottom" id="WVw-ZQ-1Rg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i5o-If-esa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ola-Xa-07v">
+                                <rect key="frame" x="193" y="326" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b0e-p2-ehf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3461" y="-438"/>
+        </scene>
         <!--New File Button Pressed Tab Controller-->
         <scene sceneID="FCA-5N-cW7">
             <objects>

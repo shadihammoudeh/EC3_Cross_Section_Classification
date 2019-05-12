@@ -22,17 +22,13 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
     
     // Below we are creating an instance from the CustomNavigationBar.swift file:
     
-    let navigationBar = CustomNavigationBar(navigationBarTitle: "'Blue Book' Catalogue Sections", leftBarButtonTarget: self, leftBarButtonSelector: #selector(buttonPressed(sender:)), navigationBarIsTranslucent: false)
+    lazy var customNavigationBar = CustomNavigationBar(defaultTitleText: "'Blue Book' Catalogue Sections", titleImage: "backButton", navigationBarLeftButtonImage: "backButton", navigationBarItemsTintColour: .green, navigationBarLeftButtonTarget: self, navigationBarSelector: #selector(navigationBarLeftButtonPressed(sender:)), viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBackgroundColour: .black, navigationBarBarStyle: .black, navigationBarBarTintColour: .black)
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         print("Tab Controller viewDidLoad()")
-        
-        navigationBar.delegate = self
-        
-        view.addSubview(navigationBar)
         
         setupTabBarItems()
 
@@ -44,13 +40,11 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
         
         print("Tab Controller viewDidLayoutSubView()")
         
-        setupNavigationBarConstraints()
-        
         tabBar.isTranslucent = false
         
 //         The below line of code calculates the total height of the tabControllerView statusBar as well as its NavigationBar and pass the total to the FirstItemInTabBarOpenRolledSections ViewController:
         
-        firstViewControllerInTabBar.tabBarControllerStatusBarPlusNavigationBarHeight = navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height
+        firstViewControllerInTabBar.tabBarControllerStatusBarPlusNavigationBarHeight = customNavigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height
 
     }
     
@@ -69,26 +63,6 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
     override func viewDidDisappear(_ animated: Bool) {
         
         print("Tab Controller viewDidDisappear")
-        
-    }
-    
-    func setupNavigationBarConstraints() {
-        
-        // The below lines of code set the constraints related to the Navigation Bar:
-        
-        navigationBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        
-        navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        if #available(iOS 11, *) {
-            
-            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-            
-        } else {
-            
-            navigationBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-            
-        }
         
     }
     
@@ -134,7 +108,7 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
     
     // The below Method defines what should happen when the user presses on the Back button at the top left corner of the screen, in this case we would like to present the Main Screen back to the user upon pressing the button:
     
-    @objc func buttonPressed(sender : UIButton) {
+    @objc func navigationBarLeftButtonPressed(sender : UIButton) {
         
         print("button pressed")
         

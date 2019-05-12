@@ -16,64 +16,76 @@ class CustomButton: UIButton {
         
         super.init(frame: frame)
         
-        setupButton()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
         
-        setupButton()
-        
     }
     
-    convenience init(buttonTitle title: String, buttonIconImage image: String, buttonTag tag: Int, buttonHeight height: CGFloat, buttonWidth width: CGFloat, buttonSelector selector: Selector, buttonTarget target: Any?) {
+    convenience init(viewButtonWillBeAddedTo hostView: UIView, buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonBackgroundHexColourCode hexColour: String, buttonFrameCornerRadius cornerRadius: CGFloat, buttonFrameBorderWidth borderWidth: CGFloat, buttonFrameBorderColour borderColour: CGColor, buttonBackgroundTransperancyAlphaValue transperancy: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String, buttonHeight height: CGFloat, buttonWidth width: CGFloat, buttonTopAnchorConstant: CGFloat) {
         
         self.init()
         
-        setTitle(title, for: .normal)
-        
-        if let buttonImage = UIImage(named: image) {
-        
-        setImage(buttonImage, for: .normal)
-            
-        }
-        
-        addTarget(target, action: selector, for: .touchUpInside)
-        
-        setupButton()
-                
-        setConstraints(buttonHeight: height, buttonWidth: width)
-        
-        self.tag = tag
+        setupButtonEssentials(viewButtonWillBeAddedTo: hostView, buttonTitleTexForNormalState: titleForNormalState, buttonTitleTextColourForNormalState: normalTextColour, buttonTitleTextColourForHighlightedState: highlightedTextColour, buttonTitleFontType: fontType, buttonTitleFontSize: fontSize, buttonBackgroundHexColourCode: hexColour, buttonFrameCornerRadius: cornerRadius, buttonFrameBorderWidth: borderWidth, buttonFrameBorderColour: borderColour, buttonBackgroundTransperancyAlphaValue: transperancy, buttonTagNumber: tagValue, buttonTarget: buttonTarget, buttonSelector: buttonSelector, buttonImageForNormalState: normalButtonImage, buttonHeight: height, buttonWidth: width, buttonTopAnchorConstant: buttonTopAnchorConstant)
 
     }
     
-    func setupButton() {
+    func setupButtonEssentials(viewButtonWillBeAddedTo hostView: UIView, buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonBackgroundHexColourCode hexColour: String, buttonFrameCornerRadius cornerRadius: CGFloat, buttonFrameBorderWidth borderWidth: CGFloat, buttonFrameBorderColour borderColour: CGColor, buttonBackgroundTransperancyAlphaValue transperancy: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String, buttonHeight height: CGFloat, buttonWidth width: CGFloat, buttonTopAnchorConstant: CGFloat) {
+                
+        setTitleColor(normalTextColour, for: .normal)
         
-        setShadow()
+        setTitleColor(highlightedTextColour, for: .highlighted)
         
-        setTitleColor(.black, for: .normal)
+        titleLabel?.font = UIFont(name: fontType, size: fontSize)
         
-        setTitleColor(.white, for: .highlighted)
+        setTitle(titleForNormalState, for: .normal)
         
-        titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 18)
+        backgroundColor = UIColor(hexString: hexColour)
         
-        backgroundColor = UIColor(hexString: "#FA8072")
+        layer.cornerRadius = cornerRadius
         
-        layer.cornerRadius = 25
+        layer.borderWidth =  borderWidth
         
-        layer.borderWidth = 3.0
-        
-        layer.borderColor = UIColor.yellow.cgColor
+        layer.borderColor = borderColour
         
         showsTouchWhenHighlighted = true
         
-        alpha = 0.60
+        alpha = transperancy
         
         contentHorizontalAlignment = .center
         
+        self.tag = tagValue
+        
+        addTarget(target, action: buttonSelector, for: .touchUpInside)
+        
+        if let buttonImage = UIImage(named: normalButtonImage) {
+            
+            setImage(buttonImage.withRenderingMode(.alwaysOriginal), for: .normal)
+            
+            contentMode = .scaleAspectFit
+            
+        }
+        
+        setShadow()
+        
+        hostView.addSubview(self)
+        
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+        
+          topAnchor.constraint(equalTo: hostView.topAnchor, constant: buttonTopAnchorConstant),
+          
+          leftAnchor.constraint(equalTo: hostView.leftAnchor),
+            
+        heightAnchor.constraint(equalToConstant: intrinsicContentSize.height + 10),
+        
+        widthAnchor.constraint(equalToConstant: intrinsicContentSize.width + 10)
+        
+        ])
+
     }
     
     private func setShadow() {
@@ -92,9 +104,7 @@ class CustomButton: UIButton {
         
     }
     
-    // The below Method uses CoreAnimation to create Shake animation:
-    
-    func shake() {
+    private func shake() {
         
         let shake = CABasicAnimation(keyPath: "position")
         
@@ -117,16 +127,6 @@ class CustomButton: UIButton {
         shake.toValue = toValue
         
         layer.add(shake, forKey: "position")
-        
-    }
-    
-    func setConstraints(buttonHeight height: CGFloat, buttonWidth width: CGFloat) {
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        heightAnchor.constraint(equalToConstant: height).isActive = true
-        
-        widthAnchor.constraint(equalToConstant: width).isActive = true
         
     }
     
