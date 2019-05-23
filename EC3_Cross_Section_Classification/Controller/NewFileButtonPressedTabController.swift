@@ -22,7 +22,7 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
     
     // Below we are creating an instance from the CustomNavigationBar.swift file:
     
-    lazy var customNavigationBar = CustomNavigationBar(defaultTitleText: "'Blue Book' Catalogue Sections", titleImage: "backButton", navigationBarLeftButtonImage: "backButton", navigationBarItemsTintColour: .green, navigationBarLeftButtonTarget: self, navigationBarSelector: #selector(navigationBarLeftButtonPressed(sender:)), viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBackgroundColour: .black, navigationBarBarStyle: .black, navigationBarBarTintColour: .black)
+    lazy var customNavigationBar = CustomNavigationBar(defaultTitleText: "'Blue Book' Catalogue Sections", titleImage: "backButton", navigationBarLeftButtonImage: "backButton", navigationBarItemsTintColour: .green, navigationBarLeftButtonTarget: self, navigationBarSelector: #selector(navigationBarLeftButtonPressed(sender:)), viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBackgroundColour: .black, navigationBarBarStyle: .black, navigationBarBarTintColourHexCode: "#F2F2F2")
     
     override func viewDidLoad() {
         

@@ -30,19 +30,19 @@ class CustomNavigationBar: UINavigationBar {
     
     // The below convenience initialiser, initialises a custom standalone Navigation Bar which only contains a custom UILabel that holds the Navigation Bar title:
     
-    convenience init(labelTitleText titleText: String,labelTitleTextColour textColour: UIColor,labelTitleFontSize fontSize: CGFloat, labelTitleFontType fontType: String, viewNavigationBarWillBeAddedTo hostView: UIView, navigationBarDelegate: UINavigationBarDelegate, isNavigationBarTranslucent translucency: Bool, navigationBarBackgroundColour backgroundColour: UIColor, navigationBarBarStyle navBarStyle: UIBarStyle, navigationBarBarTintColour barTintColour: UIColor)  {
+    convenience init(labelTitleText titleText: String,labelTitleTextColour textColour: UIColor,labelTitleFontSize fontSize: CGFloat, labelTitleFontType fontType: String, viewNavigationBarWillBeAddedTo hostView: UIView, navigationBarDelegate: UINavigationBarDelegate, isNavigationBarTranslucent translucency: Bool, navigationBarBarStyle navBarStyle: UIBarStyle, navigationBarBarTintColourHexCode barTintColour: String)  {
         
         self.init()
         
         addCustomTitleToNavigationBarAsLabel(labelTitleText: titleText, labelTitleTextColour: textColour, labelTitleFontSize: fontSize, labelTitleFontType: fontType)
         
-        setupNavigationBarEssentials(viewNavigationBarWillBeAddedTo: hostView, navigationBarDelegate: navigationBarDelegate, isNavigationBarTranslucent: translucency, navigationBarBackgroundColour: backgroundColour, navigationBarBarStyle: navBarStyle, navigationBarBarTintColour: barTintColour)
+        setupNavigationBarEssentials(viewNavigationBarWillBeAddedTo: hostView, navigationBarDelegate: navigationBarDelegate, isNavigationBarTranslucent: translucency, navigationBarBarStyle: navBarStyle, navigationBarBarTintColourHexCode: barTintColour)
         
     }
     
     // The below convenience initialiser, initialises a custom standalone Navigation Bar with a custom UILabel for the title and a left button item:
     
-    convenience init(navigationBarLeftButtonImage buttonImage: String, navigationBarItemsTintColour itemsTintColour: UIColor, navigationBarButtonTarget buttonTarget: Any?, navigationBarButtonSelector selector: Selector, labelTitleText titleText: String, labelTitleTextColour textColour: UIColor, labelTitleFontSize fontSize: CGFloat, labelTitleFontType fontType: String, viewNavigationBarWillBeAddedTo hostView: UIView, navigationBarDelegate: UINavigationBarDelegate, isNavigationBarTranslucent translucency: Bool, navigationBarBackgroundColour backgroundColour: UIColor, navigationBarBarStyle navBarStyle: UIBarStyle, navigationBarBarTintColour barTintColour: UIColor) {
+    convenience init(navigationBarLeftButtonImage buttonImage: String, navigationBarItemsTintColour itemsTintColour: UIColor, navigationBarButtonTarget buttonTarget: Any?, navigationBarButtonSelector selector: Selector, labelTitleText titleText: String, labelTitleTextColour textColour: UIColor, labelTitleFontSize fontSize: CGFloat, labelTitleFontType fontType: String, viewNavigationBarWillBeAddedTo hostView: UIView, navigationBarDelegate: UINavigationBarDelegate, isNavigationBarTranslucent translucency: Bool, navigationBarBackgroundColour backgroundColour: UIColor, navigationBarBarStyle navBarStyle: UIBarStyle, navigationBarBarTintColourHexCode barTintColour: String) {
         
         self.init()
         
@@ -50,13 +50,13 @@ class CustomNavigationBar: UINavigationBar {
         
         addCustomTitleToNavigationBarAsLabel(labelTitleText: titleText, labelTitleTextColour: textColour, labelTitleFontSize: fontSize, labelTitleFontType: fontType)
         
-        setupNavigationBarEssentials(viewNavigationBarWillBeAddedTo: hostView, navigationBarDelegate: navigationBarDelegate, isNavigationBarTranslucent: translucency, navigationBarBackgroundColour: backgroundColour, navigationBarBarStyle: navBarStyle, navigationBarBarTintColour: barTintColour)
+        setupNavigationBarEssentials(viewNavigationBarWillBeAddedTo: hostView, navigationBarDelegate: navigationBarDelegate, isNavigationBarTranslucent: translucency, navigationBarBarStyle: navBarStyle, navigationBarBarTintColourHexCode: barTintColour)
         
     }
     
     // The below initialiser, initialises a custom Navigation Bar with a default Title prompt, a title image underneath the prompt and a left button item:
     
-    convenience init(defaultTitleText titleText: String, titleImage: String, navigationBarLeftButtonImage buttonImage: String, navigationBarItemsTintColour itemsTintColour: UIColor, navigationBarLeftButtonTarget buttonTarget: Any?, navigationBarSelector selector: Selector, viewNavigationBarWillBeAddedTo hostView: UIView, navigationBarDelegate: UINavigationBarDelegate, isNavigationBarTranslucent translucency: Bool, navigationBarBackgroundColour backgroundColour: UIColor, navigationBarBarStyle navBarStyle: UIBarStyle, navigationBarBarTintColour barTintColour: UIColor) {
+    convenience init(defaultTitleText titleText: String, titleImage: String, navigationBarLeftButtonImage buttonImage: String, navigationBarItemsTintColour itemsTintColour: UIColor, navigationBarLeftButtonTarget buttonTarget: Any?, navigationBarSelector selector: Selector, viewNavigationBarWillBeAddedTo hostView: UIView, navigationBarDelegate: UINavigationBarDelegate, isNavigationBarTranslucent translucency: Bool, navigationBarBackgroundColour backgroundColour: UIColor, navigationBarBarStyle navBarStyle: UIBarStyle, navigationBarBarTintColourHexCode barTintColour: String) {
         
         self.init()
         
@@ -66,7 +66,7 @@ class CustomNavigationBar: UINavigationBar {
         
         addLeftButtonToNavigationBar(navigationBarLeftButtonImage: buttonImage, navigationBarItemsTintColour: itemsTintColour, navigationBarLeftButtonTarget: buttonTarget, navigationBarLeftButtonSelector: selector)
         
-        setupNavigationBarEssentials(viewNavigationBarWillBeAddedTo: hostView, navigationBarDelegate: navigationBarDelegate, isNavigationBarTranslucent: translucency, navigationBarBackgroundColour: backgroundColour, navigationBarBarStyle: navBarStyle, navigationBarBarTintColour: barTintColour)
+        setupNavigationBarEssentials(viewNavigationBarWillBeAddedTo: hostView, navigationBarDelegate: navigationBarDelegate, isNavigationBarTranslucent: translucency, navigationBarBarStyle: navBarStyle, navigationBarBarTintColourHexCode: barTintColour)
         
     }
     
@@ -128,7 +128,7 @@ class CustomNavigationBar: UINavigationBar {
         
     }
     
-    func setupNavigationBarEssentials(viewNavigationBarWillBeAddedTo hostView: UIView, navigationBarDelegate: UINavigationBarDelegate, isNavigationBarTranslucent transluceny: Bool, navigationBarBackgroundColour backgroundColour: UIColor, navigationBarBarStyle navBarStyle: UIBarStyle, navigationBarBarTintColour barTint: UIColor) {
+    func setupNavigationBarEssentials(viewNavigationBarWillBeAddedTo hostView: UIView, navigationBarDelegate: UINavigationBarDelegate, isNavigationBarTranslucent transluceny: Bool, navigationBarBarStyle navBarStyle: UIBarStyle, navigationBarBarTintColourHexCode barTint: String) {
         
         // The below line of code adds the navigationBarItems created above in different Methods to the navigationBarItems Array, in order for them to be displayed inside the NavigationBar. UINavigationBar contains an array of UINavigationBarItem for displaying content. According to Apple documents, UINavigationBarItem means; the items to be displayed by a navigation bar when the associated view controller is visible:
         
@@ -136,7 +136,7 @@ class CustomNavigationBar: UINavigationBar {
         
         // The tint color to apply to the navigation bar background. This color is made translucent by default unless you set the isTranslucent property to false. This one overrides the backgroundColor property:
         
-        barTintColor = barTint
+        barTintColor = UIColor(hexString: barTint, withAlpha: 0.1)
         
         // Navigation bars have two standard appearance styles: white with dark text or black with light text. Any changes you make to other navigation bar appearance properties override those inferred from the bar style. This property also affects the colour of the text inside the navigationBarItemPrompt:
         
@@ -149,8 +149,6 @@ class CustomNavigationBar: UINavigationBar {
         // The below line of code decides whether the title property of the navigationBarItem should have large font:
         
         prefersLargeTitles = false
-        
-        backgroundColor = backgroundColour
         
         delegate = navigationBarDelegate
         

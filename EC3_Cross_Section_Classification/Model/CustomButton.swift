@@ -24,15 +24,15 @@ class CustomButton: UIButton {
         
     }
     
-    convenience init(viewButtonWillBeAddedTo hostView: UIView, buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonBackgroundHexColourCode hexColour: String, buttonFrameCornerRadius cornerRadius: CGFloat, buttonFrameBorderWidth borderWidth: CGFloat, buttonFrameBorderColour borderColour: CGColor, buttonBackgroundTransperancyAlphaValue transperancy: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String, buttonHeight height: CGFloat, buttonWidth width: CGFloat, buttonTopAnchorConstant: CGFloat) {
+    convenience init(viewButtonWillBeAddedTo hostView: UIView, buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonBackgroundHexColourCode hexColour: String, buttonFrameCornerRadius cornerRadius: CGFloat, buttonFrameBorderWidth borderWidth: CGFloat, buttonFrameBorderColour borderColour: String, buttonBackgroundTransperancyAlphaValue transperancy: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String) {
         
         self.init()
         
-        setupButtonEssentials(viewButtonWillBeAddedTo: hostView, buttonTitleTexForNormalState: titleForNormalState, buttonTitleTextColourForNormalState: normalTextColour, buttonTitleTextColourForHighlightedState: highlightedTextColour, buttonTitleFontType: fontType, buttonTitleFontSize: fontSize, buttonBackgroundHexColourCode: hexColour, buttonFrameCornerRadius: cornerRadius, buttonFrameBorderWidth: borderWidth, buttonFrameBorderColour: borderColour, buttonBackgroundTransperancyAlphaValue: transperancy, buttonTagNumber: tagValue, buttonTarget: buttonTarget, buttonSelector: buttonSelector, buttonImageForNormalState: normalButtonImage, buttonHeight: height, buttonWidth: width, buttonTopAnchorConstant: buttonTopAnchorConstant)
+        setupButtonEssentials(viewButtonWillBeAddedTo: hostView, buttonTitleTexForNormalState: titleForNormalState, buttonTitleTextColourForNormalState: normalTextColour, buttonTitleTextColourForHighlightedState: highlightedTextColour, buttonTitleFontType: fontType, buttonTitleFontSize: fontSize, buttonBackgroundHexColourCode: hexColour, buttonFrameCornerRadius: cornerRadius, buttonFrameBorderWidth: borderWidth, buttonFrameBorderColour: borderColour, buttonBackgroundTransperancyAlphaValue: transperancy, buttonTagNumber: tagValue, buttonTarget: buttonTarget, buttonSelector: buttonSelector, buttonImageForNormalState: normalButtonImage)
 
     }
     
-    func setupButtonEssentials(viewButtonWillBeAddedTo hostView: UIView, buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonBackgroundHexColourCode hexColour: String, buttonFrameCornerRadius cornerRadius: CGFloat, buttonFrameBorderWidth borderWidth: CGFloat, buttonFrameBorderColour borderColour: CGColor, buttonBackgroundTransperancyAlphaValue transperancy: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String, buttonHeight height: CGFloat, buttonWidth width: CGFloat, buttonTopAnchorConstant: CGFloat) {
+    func setupButtonEssentials(viewButtonWillBeAddedTo hostView: UIView, buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonBackgroundHexColourCode hexColour: String, buttonFrameCornerRadius cornerRadius: CGFloat, buttonFrameBorderWidth borderWidth: CGFloat, buttonFrameBorderColour borderColour: String, buttonBackgroundTransperancyAlphaValue transperancy: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String) {
                 
         setTitleColor(normalTextColour, for: .normal)
         
@@ -48,7 +48,7 @@ class CustomButton: UIButton {
         
         layer.borderWidth =  borderWidth
         
-        layer.borderColor = borderColour
+        layer.borderColor = UIColor(hexString: borderColour)?.cgColor
         
         showsTouchWhenHighlighted = true
         
@@ -75,14 +75,10 @@ class CustomButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+    
+        heightAnchor.constraint(equalToConstant: intrinsicContentSize.height + 5),
         
-          topAnchor.constraint(equalTo: hostView.topAnchor, constant: buttonTopAnchorConstant),
-          
-          leftAnchor.constraint(equalTo: hostView.leftAnchor),
-            
-        heightAnchor.constraint(equalToConstant: intrinsicContentSize.height + 10),
-        
-        widthAnchor.constraint(equalToConstant: intrinsicContentSize.width + 10)
+        widthAnchor.constraint(equalToConstant: intrinsicContentSize.width + 15)
         
         ])
 
@@ -104,7 +100,7 @@ class CustomButton: UIButton {
         
     }
     
-    private func shake() {
+    func shake() {
         
         let shake = CABasicAnimation(keyPath: "position")
         
