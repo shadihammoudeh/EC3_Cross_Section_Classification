@@ -24,15 +24,15 @@ class CustomButton: UIButton {
         
     }
     
-    convenience init(viewButtonWillBeAddedTo hostView: UIView, buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonBackgroundHexColourCode hexColour: String, buttonFrameCornerRadius cornerRadius: CGFloat, buttonFrameBorderWidth borderWidth: CGFloat, buttonFrameBorderColour borderColour: String, buttonBackgroundTransperancyAlphaValue transperancy: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String) {
+    convenience init(buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String) {
         
         self.init()
         
-        setupButtonEssentials(viewButtonWillBeAddedTo: hostView, buttonTitleTexForNormalState: titleForNormalState, buttonTitleTextColourForNormalState: normalTextColour, buttonTitleTextColourForHighlightedState: highlightedTextColour, buttonTitleFontType: fontType, buttonTitleFontSize: fontSize, buttonBackgroundHexColourCode: hexColour, buttonFrameCornerRadius: cornerRadius, buttonFrameBorderWidth: borderWidth, buttonFrameBorderColour: borderColour, buttonBackgroundTransperancyAlphaValue: transperancy, buttonTagNumber: tagValue, buttonTarget: buttonTarget, buttonSelector: buttonSelector, buttonImageForNormalState: normalButtonImage)
+        setupButtonEssentials(buttonTitleTexForNormalState: titleForNormalState, buttonTitleTextColourForNormalState: normalTextColour, buttonTitleTextColourForHighlightedState: highlightedTextColour, buttonTitleFontType: fontType, buttonTitleFontSize: fontSize, buttonTagNumber: tagValue, buttonTarget: buttonTarget, buttonSelector: buttonSelector, buttonImageForNormalState: normalButtonImage)
 
     }
     
-    func setupButtonEssentials(viewButtonWillBeAddedTo hostView: UIView, buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonBackgroundHexColourCode hexColour: String, buttonFrameCornerRadius cornerRadius: CGFloat, buttonFrameBorderWidth borderWidth: CGFloat, buttonFrameBorderColour borderColour: String, buttonBackgroundTransperancyAlphaValue transperancy: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String) {
+    func setupButtonEssentials(buttonTitleTexForNormalState titleForNormalState: String, buttonTitleTextColourForNormalState normalTextColour: UIColor, buttonTitleTextColourForHighlightedState highlightedTextColour: UIColor, buttonTitleFontType fontType: String, buttonTitleFontSize fontSize: CGFloat, buttonTagNumber tagValue: Int, buttonTarget: Any?, buttonSelector: Selector, buttonImageForNormalState normalButtonImage: String) {
                 
         setTitleColor(normalTextColour, for: .normal)
         
@@ -42,19 +42,21 @@ class CustomButton: UIButton {
         
         setTitle(titleForNormalState, for: .normal)
         
-        backgroundColor = UIColor(hexString: hexColour)
+//        backgroundColor = UIColor(hexString: hexColour)
         
-        layer.cornerRadius = cornerRadius
+//        layer.cornerRadius = cornerRadius
         
-        layer.borderWidth =  borderWidth
+//        layer.borderWidth =  borderWidth
         
-        layer.borderColor = UIColor(hexString: borderColour)?.cgColor
+//        layer.borderColor = UIColor(hexString: borderColour)?.cgColor
         
         showsTouchWhenHighlighted = true
         
-        alpha = transperancy
+//        alpha = transperancy
         
-        contentHorizontalAlignment = .center
+        contentHorizontalAlignment = .left
+        
+        contentVerticalAlignment = .center
         
         self.tag = tagValue
         
@@ -68,37 +70,38 @@ class CustomButton: UIButton {
             
         }
         
-        setShadow()
-        
-        hostView.addSubview(self)
+//        setShadow()
         
         translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
     
-        heightAnchor.constraint(equalToConstant: intrinsicContentSize.height + 5),
-        
-        widthAnchor.constraint(equalToConstant: intrinsicContentSize.width + 15)
-        
-        ])
-
     }
     
-    private func setShadow() {
-        
-        layer.shadowColor = UIColor.black.cgColor
-        
-        layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
-        
-        layer.shadowRadius = 8
-        
-        layer.shadowOpacity = 0.5
-        
-        clipsToBounds = true
-        
-        layer.masksToBounds = false
-        
-    }
+//    private func setShadow() {
+//
+//        layer.shadowColor = UIColor.black.cgColor
+//
+//        layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
+//
+//        layer.shadowRadius = 8
+//
+//        layer.shadowOpacity = 0.5
+//
+//        clipsToBounds = true
+//
+//        layer.masksToBounds = false
+//
+//    }
+    
+//    override var intrinsicContentSize: CGSize {
+//        get {
+//            
+//            let baseSize = super.intrinsicContentSize
+//            
+//            return CGSize(width: baseSize.width + 20, height: baseSize.height)
+//            
+//        }
+//        
+//    }
     
     func shake() {
         

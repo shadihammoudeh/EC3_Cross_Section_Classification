@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF03A1A422B5827E007C426C /* UniversalBeamClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF03A1A322B5827E007C426C /* UniversalBeamClass.swift */; };
 		CF06437E22837A5600233D54 /* UniversalBeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF06437D22837A5600233D54 /* UniversalBeamsViewController.swift */; };
 		CF0E2CBC2270FB6200921458 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0E2CBB2270FB6200921458 /* CustomCollectionView.swift */; };
 		CF3310782267ACA9002D4C4D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3310772267ACA9002D4C4D /* CustomTabBar.swift */; };
@@ -33,6 +34,7 @@
 		625BB5D5469AC1096A423D5E /* Pods-EC3_Cross_Section_Classification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC3_Cross_Section_Classification.release.xcconfig"; path = "Target Support Files/Pods-EC3_Cross_Section_Classification/Pods-EC3_Cross_Section_Classification.release.xcconfig"; sourceTree = "<group>"; };
 		71784A0D59CB20F7BEBABC6D /* Pods_EC3_Cross_Section_Classification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EC3_Cross_Section_Classification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D35147DC051ECC8EB7D1B7 /* Pods-EC3_Cross_Section_Classification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EC3_Cross_Section_Classification.debug.xcconfig"; path = "Target Support Files/Pods-EC3_Cross_Section_Classification/Pods-EC3_Cross_Section_Classification.debug.xcconfig"; sourceTree = "<group>"; };
+		CF03A1A322B5827E007C426C /* UniversalBeamClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalBeamClass.swift; sourceTree = "<group>"; };
 		CF06437D22837A5600233D54 /* UniversalBeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalBeamsViewController.swift; sourceTree = "<group>"; };
 		CF0E2CBB2270FB6200921458 /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
 		CF3310772267ACA9002D4C4D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				CF8EC4D82263CBB800445A0C /* NewFileButtonPressedTabController.swift */,
 				CF3310792267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift */,
 				CF06437D22837A5600233D54 /* UniversalBeamsViewController.swift */,
+				CF03A1A322B5827E007C426C /* UniversalBeamClass.swift */,
 				CF33107B2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift */,
 			);
 			path = Controller;
@@ -295,6 +298,7 @@
 				CF06437E22837A5600233D54 /* UniversalBeamsViewController.swift in Sources */,
 				CFCCC7A0225BF136005C5F6A /* CustomButton.swift in Sources */,
 				CFDBA457225E8BD200631F28 /* ButtonsAndIphonesData.swift in Sources */,
+				CF03A1A422B5827E007C426C /* UniversalBeamClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,15 +16,15 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
     
     @IBOutlet weak var backgroundImage: UIImageView!
     
-    lazy var customNavigationBar = CustomNavigationBar(labelTitleText: "Cross-Section Classification to Eurocode 3", labelTitleTextColour: .white, labelTitleFontSize: 18, labelTitleFontType: "Apple SD Gothic Neo", viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBarStyle: .default, navigationBarBarTintColourHexCode: "#030806")
+    lazy var customNavigationBar = CustomNavigationBar(labelTitleText: "Cross-Section Classification to Eurocode 3 (BS EN 1993-1-1:2005)", labelTitleTextColour: .white, labelTitleFontSize: 18, labelTitleFontType: "Apple SD Gothic Neo", viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBarStyle: .default, navigationBarBarTintColourHexCode: "#030806")
     
-    lazy var newFileButton = CustomButton(viewButtonWillBeAddedTo: self.view, buttonTitleTexForNormalState: "New File...", buttonTitleTextColourForNormalState: .black, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonBackgroundHexColourCode: "#B24B32", buttonFrameCornerRadius: 25, buttonFrameBorderWidth: 2, buttonFrameBorderColour: "#7AFFD2", buttonBackgroundTransperancyAlphaValue: 0.75, buttonTagNumber: 1, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "newFileButtonIcon")
+    var newFileButton = CustomButton(buttonTitleTexForNormalState: "New...", buttonTitleTextColourForNormalState: .white, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonTagNumber: 1, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "New File")
     
-    lazy var openButton = CustomButton(viewButtonWillBeAddedTo: self.view, buttonTitleTexForNormalState: "Open", buttonTitleTextColourForNormalState: .black, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonBackgroundHexColourCode: "#B24B32", buttonFrameCornerRadius: 25, buttonFrameBorderWidth: 2, buttonFrameBorderColour: "#7AFFD2", buttonBackgroundTransperancyAlphaValue: 0.75, buttonTagNumber: 2, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "openFileButtonIcon")
+    var openFileButton = CustomButton(buttonTitleTexForNormalState: "Open...", buttonTitleTextColourForNormalState: .white, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonTagNumber: 2, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "Open File")
     
-    lazy var documentationButton = CustomButton(viewButtonWillBeAddedTo: self.view, buttonTitleTexForNormalState: "Documentation", buttonTitleTextColourForNormalState: .black, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonBackgroundHexColourCode: "#B24B32", buttonFrameCornerRadius: 25, buttonFrameBorderWidth: 2, buttonFrameBorderColour: "#7AFFD2", buttonBackgroundTransperancyAlphaValue: 0.75, buttonTagNumber: 3, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "documentationIcon")
+    var documentationButton = CustomButton(buttonTitleTexForNormalState: "Documentation", buttonTitleTextColourForNormalState: .white, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonTagNumber: 3, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "Documentation")
     
-    lazy var contactUsButton = CustomButton(viewButtonWillBeAddedTo: self.view, buttonTitleTexForNormalState: "Contact Us", buttonTitleTextColourForNormalState: .black, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonBackgroundHexColourCode: "#B24B32", buttonFrameCornerRadius: 25, buttonFrameBorderWidth: 2, buttonFrameBorderColour: "#7AFFD2", buttonBackgroundTransperancyAlphaValue: 0.75, buttonTagNumber: 4, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "emailUsIcon")
+    var contactUsButton = CustomButton(buttonTitleTexForNormalState: "Contact Us", buttonTitleTextColourForNormalState: .white, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonTagNumber: 4, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "Contact Us")
     
     // The viewDidLayoutSubviews() gets called to notify the view controller that its view has just laid out its subviews:
     
@@ -33,7 +33,21 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         super.viewDidLayoutSubviews()
         
         print("viewDidLayoutSubviews")
-    
+        
+        newFileButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+        
+        openFileButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+
+        documentationButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+
+        contactUsButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        
+        openFileButton.frame.size.width = 115
+        
+        documentationButton.frame.size.width = 170
+        
+        contactUsButton.frame.size.width = 145
+        
         let statusBarPlusNavigationBarHeight = customNavigationBar.frame.size.height + UIApplication.shared.statusBarFrame.size.height
         
         let totalScreenHeightInculdingSafeAreaGuidlines = view.frame.size.height
@@ -42,10 +56,10 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         
         let totalScreenSafeAreaHeight = totalScreenHeightInculdingSafeAreaGuidlines - statusBarPlusNavigationBarHeight - bottomViewSafeAreaGuidlineHeight
         
-        let verticalSpacingBetweenButtons = (totalScreenSafeAreaHeight - newFileButton.frame.height - openButton.frame.height - documentationButton.frame.height - contactUsButton.frame.height) / 5
+        let verticalSpacingBetweenButtons = (totalScreenSafeAreaHeight - newFileButton.frame.height - openFileButton.frame.height - documentationButton.frame.height - contactUsButton.frame.height) / 5
         
         setupConstraints(verticalButtonsSpacings: verticalSpacingBetweenButtons)
-        
+
     }
     
     override func viewDidLoad() {
@@ -53,6 +67,14 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         super.viewDidLoad()
         
         print("viewDidLoad")
+        
+        view.addSubview(newFileButton)
+        
+        view.addSubview(openFileButton)
+        
+        view.addSubview(documentationButton)
+        
+        view.addSubview(contactUsButton)
         
     }
     
@@ -76,7 +98,7 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
             
         } else if sender.tag == 2 {
             
-            openButton.shake()
+            openFileButton.shake()
             
             print("button 2 has been pressed")
             
@@ -112,19 +134,20 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
             
             newFileButton.topAnchor.constraint(equalTo: customNavigationBar.bottomAnchor, constant: verticalSpacings),
             
-            newFileButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            newFileButton.leftAnchor.constraint(equalTo: documentationButton.leftAnchor),
             
-            openButton.topAnchor.constraint(equalTo: newFileButton.bottomAnchor, constant: verticalSpacings),
+            openFileButton.topAnchor.constraint(equalTo: newFileButton.bottomAnchor, constant: verticalSpacings),
             
-            openButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            openFileButton.leftAnchor.constraint(equalTo: documentationButton.leftAnchor),
             
-            documentationButton.topAnchor.constraint(equalTo: openButton.bottomAnchor, constant: verticalSpacings),
+            documentationButton.topAnchor.constraint(equalTo: openFileButton.bottomAnchor, constant: verticalSpacings),
             
             documentationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             contactUsButton.topAnchor.constraint(equalTo: documentationButton.bottomAnchor, constant: verticalSpacings),
             
-            contactUsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            contactUsButton.leftAnchor.constraint(equalTo: documentationButton.leftAnchor)
+            
             
             ])
         
