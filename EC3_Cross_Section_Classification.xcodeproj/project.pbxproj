@@ -25,6 +25,8 @@
 		CF85F1262284D2E10059D125 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85F1252284D2E10059D125 /* CustomTableViewCell.swift */; };
 		CF8EC4D92263CBB800445A0C /* NewFileButtonPressedTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8EC4D82263CBB800445A0C /* NewFileButtonPressedTabController.swift */; };
 		CF9365CE227CF47B00BF05FC /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9365CD227CF47B00BF05FC /* CustomCollectionViewCell.swift */; };
+		CF9D7D1022BAC92000B787CE /* ParsingCSVfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9D7D0F22BAC92000B787CE /* ParsingCSVfiles.swift */; };
+		CF9D7D1422BAD50600B787CE /* UB1016x305series.csv in Resources */ = {isa = PBXBuildFile; fileRef = CF9D7D1322BAD50600B787CE /* UB1016x305series.csv */; };
 		CFCCC7A0225BF136005C5F6A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCCC79F225BF136005C5F6A /* CustomButton.swift */; };
 		CFDBA457225E8BD200631F28 /* ButtonsAndIphonesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDBA456225E8BD200631F28 /* ButtonsAndIphonesData.swift */; };
 		D77E62E93B897408C3B8DF96 /* Pods_EC3_Cross_Section_Classification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71784A0D59CB20F7BEBABC6D /* Pods_EC3_Cross_Section_Classification.framework */; };
@@ -54,6 +56,8 @@
 		CF85F1252284D2E10059D125 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		CF8EC4D82263CBB800445A0C /* NewFileButtonPressedTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFileButtonPressedTabController.swift; sourceTree = "<group>"; };
 		CF9365CD227CF47B00BF05FC /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		CF9D7D0F22BAC92000B787CE /* ParsingCSVfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingCSVfiles.swift; sourceTree = "<group>"; };
+		CF9D7D1322BAD50600B787CE /* UB1016x305series.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UB1016x305series.csv; sourceTree = "<group>"; };
 		CFCCC79F225BF136005C5F6A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CFDBA456225E8BD200631F28 /* ButtonsAndIphonesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsAndIphonesData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +142,7 @@
 				CF3310792267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift */,
 				CF06437D22837A5600233D54 /* UniversalBeamsViewController.swift */,
 				CF03A1A322B5827E007C426C /* UniversalBeamClass.swift */,
+				CF9D7D0F22BAC92000B787CE /* ParsingCSVfiles.swift */,
 				CF33107B2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift */,
 			);
 			path = Controller;
@@ -154,6 +159,7 @@
 				CF85F1252284D2E10059D125 /* CustomTableViewCell.swift */,
 				CF9365CD227CF47B00BF05FC /* CustomCollectionViewCell.swift */,
 				CF45B92A22871CE2006E5973 /* data.txt */,
+				CF9D7D1322BAD50600B787CE /* UB1016x305series.csv */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -224,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF45B92B22871CE2006E5973 /* data.txt in Resources */,
+				CF9D7D1422BAD50600B787CE /* UB1016x305series.csv in Resources */,
 				CF6DB1D42257E6B800C69B4C /* LaunchScreen.storyboard in Resources */,
 				CF6DB1D12257E6B800C69B4C /* Assets.xcassets in Resources */,
 				CF6DB1CC2257E6B700C69B4C /* Main.storyboard in Resources */,
@@ -287,6 +294,7 @@
 				CF8EC4D92263CBB800445A0C /* NewFileButtonPressedTabController.swift in Sources */,
 				CF33107C2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift in Sources */,
 				CF4DBAE422615032000FCED4 /* CustomNavigationBar.swift in Sources */,
+				CF9D7D1022BAC92000B787CE /* ParsingCSVfiles.swift in Sources */,
 				CF9365CE227CF47B00BF05FC /* CustomCollectionViewCell.swift in Sources */,
 				CF0E2CBC2270FB6200921458 /* CustomCollectionView.swift in Sources */,
 				CF6DB1C92257E6B700C69B4C /* MainScreen.swift in Sources */,

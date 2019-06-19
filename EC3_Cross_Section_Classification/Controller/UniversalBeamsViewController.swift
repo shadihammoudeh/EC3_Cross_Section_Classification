@@ -8,39 +8,13 @@
 
 import UIKit
 
-//class UserModal {
-//
-//    var userImage: UIImage?
-//
-//    var name: String?
-//
-//    var age: String?
-//
-//    init(userImage: UIImage, name: String, age: String) {
-//
-//        self.userImage = userImage
-//
-//        self.name = name
-//
-//        self.age = age
-//
-//    }
-//
-//}
-
 class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
 
     lazy var customNavigationBar = CustomNavigationBar(navigationBarLeftButtonImage: "backButton", navigationBarItemsTintColour: .red, navigationBarButtonTarget: self, navigationBarButtonSelector: #selector(navigationBarLeftButtonPressed(sender:)), labelTitleText: "Universal Beams (UB)", labelTitleTextColour: .red, labelTitleFontSize: 18, labelTitleFontType: "AppleSDGothicNeo-Light", viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: true, navigationBarBackgroundColour: .black, navigationBarBarStyle: .black, navigationBarBarTintColourHexCode: "#F2F2F2")
         
-    let universalBeamsArray = [[1,2,3], [5,6,7]]
+    var universalBeams = [UniversalBeamClass]()
     
     var tableView = UITableView()
-    
-//    var userModal = [UserModal]()
-    
-    var  data:[[String:String]] = []
-    
-    var  columnTitles:[String] = []
 
     override func viewDidLoad() {
         
@@ -52,9 +26,67 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         
         setTableView()
         
-       convertCSV(file: "data")
+//       convertCSV(file: "data")
         
-
+        // We are going to call the parse function as soon as the application loads:
+        
+        parseUniversalBeamsCSV()
+        
+    }
+    
+    // We want to create a function that will parse the Universal Beam CSV data into a form that is useful:
+    
+    func parseUniversalBeamsCSV() {
+        
+        // We first need a path for where the CSV file is located. The below can be forced un-wrapped since we know for sure that the path for the file does exist:
+        
+        let path = Bundle.main.path(forResource: "UB1016x305series", ofType: "csv")!
+        
+        // Then we need to use the parser (i.e., ParsingCSVfiles.csv) which can throw an error, thus, we need to use a do catch statement:
+        
+        do {
+            
+            let csv = try CSV(contentOfURL: path)
+            
+            // The below line of code will generate an array of dictionary, whereby each parsed CSV row represents a dictionary:
+            
+            let rows = csv.rows
+            
+            print(rows)
+            
+            // Now we want to pull out the data that we are interested in out of the parsed csv file generated in the above line of code. We need to loop through each row and pull out the data we want, create a new UB Section Designation. Then append it to the univeralBeams array above:
+            
+            for row in rows {
+                
+                let universalBeamSectionDesignation = row["Section designation"]!
+                
+                let universalBeamWebThickness = Double(row["Web thickness tw (mm)"]!)!
+                
+                let universalBeamWidth = Double(row["Width of section b (mm)"]!)!
+                
+                let universalBeamMassPerMetre = Double(row["Mass per metre (kg/m)"]!)!
+                
+                let universalBeamRootRadius = Double(row["Root radius r (mm)"]!)!
+                
+                let universalBeamDepthBetweenFillets = Double(row["Depth between fillets d (mm)"]!)!
+                
+                let universalBeamFlangeThickness = Double(row["Flange thickness tf (mm)"]!)!
+                
+                let universalBeamDepthOfSection = Double(row["Depth of section h (mm)"]!)!
+                
+                let univeralBeam = UniversalBeamClass(uBsectionDesignation: universalBeamSectionDesignation, uBwebThickness: universalBeamWebThickness, uBwidth: universalBeamWidth, uBmassPerMetre: universalBeamMassPerMetre, uBrootRadius: universalBeamRootRadius, uBdepthBetweenFillets: universalBeamDepthBetweenFillets, uBflangeThickness: universalBeamFlangeThickness, uBdepthOfSection: universalBeamDepthOfSection)
+                
+                // Then we need to append each of the above created univeral beam to the univeralBeams array created above:
+                
+                universalBeams.append(univeralBeam)
+                
+            }
+            
+        } catch let err as NSError {
+            
+            print(err.debugDescription)
+            
+        }
         
     }
     
@@ -123,157 +155,5 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         return UIBarPosition.topAttached
         
     }
-    
-    // The below Method extracts a Swift Array from the plist file:
-
-//    func getSwiftArrayFromPlist(name: String) -> (Array<Dictionary<String, String>>) {
-//
-//        let path = Bundle.main.path(forResource: name, ofType: "plist")
-//
-//        let array = NSArray(contentsOfFile: path!)
-//
-//        return ((array as? Array<Dictionary<String, String>>)!)
-//
-//    }
-
-    // The below Method extracts a row of data for a particular value in a column:
-
-//    func getDataForSectionDesignation(sectionDesignation: String) -> (Array<[String: String]>) {
-//
-//        let array = getSwiftArrayFromPlist(name: "UB 1016x305 series")
-//
-//        // A Predicate is a filter: you specify the criteria you want to match, and Core Data will ensure that only matching objects get returned. The %@ will be instantly recognisable to anyone who has used Objective-C before, and it means "place the contents of a variable here, whatever data type it is".
-//
-//        let namePredicate = NSPredicate(format: "Section designation = %@", sectionDesignation)
-//
-//        // The filter Method loops over a collection and return an Array containing only thos elements that match an icnlude condition:
-//
-//        return [array.filter {namePredicate.evaluate(with: $0)}[0]]
-//
-//    }
-    
-    func readDataFromFile(file:String) -> String!{
-        
-        guard let filepath = Bundle.main.path(forResource: file, ofType: "txt")
-            
-            else {
-                
-                return nil
-                
-        }
-    
-        do {
-            
-            let contents = try String(contentsOfFile: filepath)
-            
-            return contents
-            
-        } catch {
-            
-            print("File Read Error for file \(filepath)")
-            
-            return nil
-            
-        }
-        
-    }
-    
-    func cleanRows(file: String)->String{
-        
-        var cleanFile = readDataFromFile(file: file)
-        
-        cleanFile = cleanFile!.replacingOccurrences(of: "\r", with: "\n")
-        
-        cleanFile = cleanFile!.replacingOccurrences(of: "\n\n", with: "\n")
-        
-        return cleanFile!
-        
-    }
-    
-    func getStringFieldsForRow(row:String, delimiter:String)-> [String]{
-        
-        return row.components(separatedBy: delimiter)
-        
-    }
-    
-    func convertCSV(file:String){
-        
-        let rows = cleanRows(file: file).components(separatedBy: "\n")
-        
-        if rows.count > 0 {
-            
-            data = []
-            
-            columnTitles = getStringFieldsForRow(row: rows.first!,delimiter:",")
-            
-            for row in rows {
-                
-                let fields = getStringFieldsForRow(row: row,delimiter: ",")
-                
-                if fields.count != columnTitles.count {continue}
-                
-                var dataRow = [String:String]()
-                
-                for (index,field) in fields.enumerated(){
-                    
-                    let fieldName = columnTitles[index]
-                    
-                    dataRow[fieldName] = field
-                    
-                }
-                
-                data += [dataRow]
-                
-            }
-            
-        } else {
-            
-            print("No data in file")
-            
-        }
-        
-        data.remove(at: 0)
-        
-        print(data[0])
-        
-        print([data[0]["Depth of section h (mm)"]])
-        
-    }
-    
-//    func printData(){
-//
-//        convertCSV(file: textView.text)
-//
-//        var tableString = ""
-//
-//        var rowString = ""
-//
-//        print("data: \(data)")
-//
-//        for row in data{
-//
-//            rowString = ""
-//
-//            for fieldName in columnTitles{
-//
-//                guard let field = row[fieldName] else{
-//
-//                    print("field not found: \(fieldName)")
-//
-//                    continue
-//
-//                }
-//
-//                rowString += String(format:"%@     ",field)
-//
-//            }
-//
-//            tableString += rowString + "\n"
-//
-//        }
-//
-//        textView.text = tableString
-//
-//    }
 
 }
