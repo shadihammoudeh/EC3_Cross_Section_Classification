@@ -9,76 +9,87 @@
 import UIKit
 
 class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
-
-    lazy var customNavigationBar = CustomNavigationBar(navigationBarLeftButtonImage: "backButton", navigationBarItemsTintColour: .red, navigationBarButtonTarget: self, navigationBarButtonSelector: #selector(navigationBarLeftButtonPressed(sender:)), labelTitleText: "Universal Beams (UB)", labelTitleTextColour: .red, labelTitleFontSize: 18, labelTitleFontType: "AppleSDGothicNeo-Light", viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: true, navigationBarBackgroundColour: .black, navigationBarBarStyle: .black, navigationBarBarTintColourHexCode: "#F2F2F2")
-        
-    var universalBeams = [UniversalBeamClass]()
     
-    var tableView = UITableView()
-
+    lazy var customNavigationBar = CustomNavigationBar(navigationBarLeftButtonImage: "backButton", navigationBarItemsTintColour: .green, navigationBarButtonTarget: self, navigationBarButtonSelector: #selector(navigationBarLeftButtonPressed(sender:)), labelTitleText: "Universal Beams (UB)", labelTitleTextColour: .red, labelTitleFontSize: 18, labelTitleFontType: "AppleSDGothicNeo-Light", viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBackgroundColour: .black, navigationBarBarStyle: .black, navigationBarBarTintColourHexCode: "#030806")
+    
+    var universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser = [IsectionsDimensionsParameters]()
+    
+    // Filter, Map and Reduce iterate over a collection (such as Arrays and Dictionaries) and they make changes to it, and then they spit it back in a new form. Think of it as doing the same thing as a For Loop, however, using a much cleaner way to write it.
+    
+    //    lazy var universalBeamsSeries1016x305Array = universalBeamsArraysOfDictionariesFromCsvFile.filter({ return $0.universalBeamSectionDesignation.contains("1016 x 305") })
+    //
+    //    lazy var gst = universalBeamsSeries1016x305Array.map({$0.universalBeamSectionDesignation!})
+    
+    // Below we are declaring the UITableView, which is going to display the data for all of the Universal Beams. We will create a section inside the UITableView for each UB series, and inside each section we are going to list the various UBs for that specific series:
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
+        print("UniversalBeamsViewController viewDidLoad initiated")
+        
+        let customTableView = CustomTableView(tableViewDelegate: self, tableViewDataSource: self, tableViewHostView: self.view, tableViewCustomCellClassToBeRegistered: IsectionsCustomTableViewCell.self, tableViewCustomCellReuseIdentifierToBeRegistered: "customCell", tableViewTopAnchor: customNavigationBar.bottomAnchor
+            , tableViewBottomAnchor: view.bottomAnchor)
+        
         // Do any additional setup after loading the view.
         
         view.backgroundColor = .yellow
         
-        setTableView()
-        
-//       convertCSV(file: "data")
-        
         // We are going to call the parse function as soon as the application loads:
         
-        parseUniversalBeamsCSV()
+        parseCsvFile(csvFileToParse: "UniversalBeamsDimensions")
         
     }
     
-    // We want to create a function that will parse the Universal Beam CSV data into a form that is useful:
+    // We want to create a function that will parse the Universal Beam CSV data into a format that is useful:
     
-    func parseUniversalBeamsCSV() {
+    func parseCsvFile(csvFileToParse: String) {
         
         // We first need a path for where the CSV file is located. The below can be forced un-wrapped since we know for sure that the path for the file does exist:
         
-        let path = Bundle.main.path(forResource: "UB1016x305series", ofType: "csv")!
+        let path = Bundle.main.path(forResource: csvFileToParse, ofType: "csv")!
         
-        // Then we need to use the parser (i.e., ParsingCSVfiles.csv) which can throw an error, thus, we need to use a do catch statement:
+        // Then we need to use the parser (i.e., CsvParser.swift) which can throw an error, thus, we need to use a do catch statement:
         
         do {
             
-            let csv = try CSV(contentOfURL: path)
+            // In the below line of code we are passing the path of the CSV file we are interested in extracting its data and pass it to the CsvParser Class:
             
-            // The below line of code will generate an array of dictionary, whereby each parsed CSV row represents a dictionary:
+            let csv = try CsvParser(contentOfURL: path)
+            
+            // The below line of code will generate an array of dictionaries, whereby each parsed CSV row represents an Array of Dictionaries:
             
             let rows = csv.rows
             
-            print(rows)
-            
-            // Now we want to pull out the data that we are interested in out of the parsed csv file generated in the above line of code. We need to loop through each row and pull out the data we want, create a new UB Section Designation. Then append it to the univeralBeams array above:
+            // Now we want to pull out the data that we are interested in out of the parsed csv file generated in the above line of code. As the above code line will spit out the data in an Arrays of Dictionaries format, whereby each line is going to be an Array, which contains multiple dictionaries inside of it, and each Dictionary is going to have a title as its Key and a value as its Value. We need to loop through each row and pull out the data we want. Then each extraced row (Array of Dictionaries) is going to be appended to the big Array (i.e., universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser) which is going to contain all other Arrays:
             
             for row in rows {
                 
-                let universalBeamSectionDesignation = row["Section designation"]!
+                let sectionSeries = row["Section Series"]!
                 
-                let universalBeamWebThickness = Double(row["Web thickness tw (mm)"]!)!
+                let lastSectionSeriesNumber = row["Last Section Series Number"]!
                 
-                let universalBeamWidth = Double(row["Width of section b (mm)"]!)!
+                let fullSectionDesignation = row["Full Section Designation"]!
                 
-                let universalBeamMassPerMetre = Double(row["Mass per metre (kg/m)"]!)!
+                let sectionMassPerMetre = Double(row["Mass Per Metre (kg/m)"]!)!
                 
-                let universalBeamRootRadius = Double(row["Root radius r (mm)"]!)!
+                let depthOfSection = Double(row["Depth of Section [h] (mm)"]!)!
                 
-                let universalBeamDepthBetweenFillets = Double(row["Depth between fillets d (mm)"]!)!
+                let widthOfSection = Double(row["Width of Section [b] (mm)"]!)!
                 
-                let universalBeamFlangeThickness = Double(row["Flange thickness tf (mm)"]!)!
+                let sectionWebThickness = Double(row["Web Thickness [tw] (mm)"]!)!
                 
-                let universalBeamDepthOfSection = Double(row["Depth of section h (mm)"]!)!
+                let sectionFlangeThickness = Double(row["Flange Thickness [tf] (mm)"]!)!
                 
-                let univeralBeam = UniversalBeamClass(uBsectionDesignation: universalBeamSectionDesignation, uBwebThickness: universalBeamWebThickness, uBwidth: universalBeamWidth, uBmassPerMetre: universalBeamMassPerMetre, uBrootRadius: universalBeamRootRadius, uBdepthBetweenFillets: universalBeamDepthBetweenFillets, uBflangeThickness: universalBeamFlangeThickness, uBdepthOfSection: universalBeamDepthOfSection)
+                let sectionRootRadius = Double(row["Root Radius [r] (mm)"]!)!
                 
-                // Then we need to append each of the above created univeral beam to the univeralBeams array created above:
+                let depthOfSectionBetweenFillets = Double(row["Depth between Fillets [d] (mm)"]!)!
                 
-                universalBeams.append(univeralBeam)
+                let individualUniversalBeamArrayOfDictionaries = IsectionsDimensionsParameters(sectionSeries: sectionSeries, lastSectionSeriesNumber: lastSectionSeriesNumber, fullSectionDesignation: fullSectionDesignation, sectionMassPerMetre: sectionMassPerMetre, depthOfSection: depthOfSection, widthOfSection: widthOfSection, sectionWebThickness: sectionWebThickness, sectionFlangeThickness: sectionFlangeThickness, sectionRootRadius: sectionRootRadius, depthOfSectionBetweenFillets: depthOfSectionBetweenFillets)
+                
+                // Then we need to append each of the above created Array of Dictionaries to the main Array declared above:
+                
+                universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.append(individualUniversalBeamArrayOfDictionaries)
                 
             }
             
@@ -90,45 +101,33 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    func setTableView() {
-        
-        tableView.frame = self.view.frame
-        
-        tableView.backgroundColor = UIColor.red
-        
-        tableView.delegate = self
-        
-        tableView.dataSource = self
-        
-        tableView.separatorColor = UIColor.clear
-        
-        self.view.addSubview(tableView)
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        
-        tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        
-        tableView.topAnchor.constraint(equalTo: customNavigationBar.bottomAnchor).isActive = true
-        
-        tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "Cell")
-        
-    }
-
+    // The below function specifies how many cells in total should be displayed in our table:
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 10
         
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! IsectionsCustomTableViewCell
         
-        cell.textLabel?.text = "\(indexPath.row)"
+        let universalBeamsSeries1016x305Array = universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.filter({ return $0.fullSectionDesignation.contains("1016 x 305") })
+        
+        var gst = universalBeamsSeries1016x305Array.map({$0.fullSectionDesignation})
+        
+        cell.sectionDesignationLabel.text = gst[indexPath.row]
+        //
+        cell.sectionDesignationLabel.textColor = .black
+        
+        cell.sectionDesignationLabel.font = UIFont(name: "AppleSDGothicNeo-Light", size: 15)
         
         return cell
         
@@ -136,7 +135,19 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 118
+        return 50
+        
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if section == 1 {
+            
+            return "1016 x 305 series"
+            
+        }
+        
+        return "Something else"
         
     }
     
@@ -155,5 +166,5 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         return UIBarPosition.topAttached
         
     }
-
+    
 }
