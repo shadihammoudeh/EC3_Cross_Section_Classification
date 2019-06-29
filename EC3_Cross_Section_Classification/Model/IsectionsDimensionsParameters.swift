@@ -12,9 +12,13 @@ class IsectionsDimensionsParameters {
     
     // Below are the dimensions properties related to I-Sections cross-sections, these will be filled by extracting the relevant data from the corresponding CSV file:
     
-    var _sectionSeries: String!
+    var _firstSectionSeriesNumber: Int!
     
-    var _lastSectionSeriesNumber: String!
+    var _secondSectionSeriesNumber: Int!
+    
+    var _lastSectionSeriesNumber: Int!
+    
+    var _sectionSerialNumber: String!
     
     var _fullSectionDesignation: String!
     
@@ -32,15 +36,27 @@ class IsectionsDimensionsParameters {
     
     var _depthOfSectionBetweenFillets: Double!
     
-    var sectionSeries: String {
+    var firstSectionSeriesNumber: Int {
         
-        return _sectionSeries
+        return _firstSectionSeriesNumber
         
     }
     
-    var lastSectionSeriesNumber: String {
+    var secondSectionSeriesNumber: Int {
+        
+        return _secondSectionSeriesNumber
+        
+    }
+    
+    var lastSectionSeriesNumber: Int {
         
         return _lastSectionSeriesNumber
+        
+    }
+    
+    var sectionSerialNumber: String {
+        
+        return _sectionSerialNumber
         
     }
     
@@ -92,11 +108,15 @@ class IsectionsDimensionsParameters {
         
     }
     
-    init(sectionSeries: String, lastSectionSeriesNumber: String, fullSectionDesignation: String, sectionMassPerMetre: Double, depthOfSection: Double, widthOfSection: Double, sectionWebThickness: Double, sectionFlangeThickness: Double, sectionRootRadius: Double, depthOfSectionBetweenFillets: Double) {
+    init(firstSectionSeriesNumber: Int, secondSectionSeriesNumber: Int, lastSectionSeriesNumber: Int, sectionSerialNumber: String, fullSectionDesignation: String, sectionMassPerMetre: Double, depthOfSection: Double, widthOfSection: Double, sectionWebThickness: Double, sectionFlangeThickness: Double, sectionRootRadius: Double, depthOfSectionBetweenFillets: Double) {
         
-        self._sectionSeries = sectionSeries
+        self._firstSectionSeriesNumber = firstSectionSeriesNumber
+        
+        self._secondSectionSeriesNumber = secondSectionSeriesNumber
         
         self._lastSectionSeriesNumber = lastSectionSeriesNumber
+        
+        self._sectionSerialNumber = sectionSerialNumber
         
         self._fullSectionDesignation = fullSectionDesignation
         

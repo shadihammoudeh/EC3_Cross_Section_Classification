@@ -12,15 +12,13 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
     
     lazy var customNavigationBar = CustomNavigationBar(navigationBarLeftButtonImage: "backButton", navigationBarItemsTintColour: .green, navigationBarButtonTarget: self, navigationBarButtonSelector: #selector(navigationBarLeftButtonPressed(sender:)), labelTitleText: "Universal Beams (UB)", labelTitleTextColour: .red, labelTitleFontSize: 18, labelTitleFontType: "AppleSDGothicNeo-Light", viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBackgroundColour: .black, navigationBarBarStyle: .black, navigationBarBarTintColourHexCode: "#030806")
     
+    // The below Array is the one which contains the data extracted from the passed CSV. It contains the data in a one big Array, which contains several Arrays inside it, whereby each Array inside the big Array contains several Dictionaries:
+    
     var universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser = [IsectionsDimensionsParameters]()
     
-    // Filter, Map and Reduce iterate over a collection (such as Arrays and Dictionaries) and they make changes to it, and then they spit it back in a new form. Think of it as doing the same thing as a For Loop, however, using a much cleaner way to write it.
+    // The below Array is mapped from the above Array, whereby only sectionSerialNumbers are reported inside of it, with no duplication:
     
-    //    lazy var universalBeamsSeries1016x305Array = universalBeamsArraysOfDictionariesFromCsvFile.filter({ return $0.universalBeamSectionDesignation.contains("1016 x 305") })
-    //
-    //    lazy var gst = universalBeamsSeries1016x305Array.map({$0.universalBeamSectionDesignation!})
-    
-    // Below we are declaring the UITableView, which is going to display the data for all of the Universal Beams. We will create a section inside the UITableView for each UB series, and inside each section we are going to list the various UBs for that specific series:
+    lazy var universalBeamsSectionSerialNumberArray = universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.map({ return $0.sectionSerialNumber }).removingDuplicates()
     
     override func viewDidLoad() {
         
@@ -38,6 +36,88 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         // We are going to call the parse function as soon as the application loads:
         
         parseCsvFile(csvFileToParse: "UniversalBeamsDimensions")
+        
+        // The below code sorts the Data reported from the relevant CSV file using the Parser either in an Ascending or Dscending order:
+        
+        universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.sort {
+            
+            if $0.firstSectionSeriesNumber != $1.firstSectionSeriesNumber {
+                
+                return $0.firstSectionSeriesNumber < $1.firstSectionSeriesNumber
+                
+            } else if $0.sectionSerialNumber != $1.sectionSerialNumber {
+                
+                return $0.sectionSerialNumber < $1.sectionSerialNumber
+                
+            } else {
+                
+                return $0.lastSectionSeriesNumber < $1.lastSectionSeriesNumber
+                
+            }
+            
+        }
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return universalBeamsSectionSerialNumberArray.count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        // The below line of code will convert the original Array into an Array of key-value pairs using tuples, where each value has the number 1:
+        
+        let convertedUniversalBeamsArrayDataExtractedFromTheCsvFileUsingTheParserIntoKeyValuePairsTuples = universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.map { ($0.sectionSerialNumber, 1) }
+        
+        // The below line of code create a Dictionary from the above tuple array, asking it to add the 1s together every time it finds a duplicate key:
+        
+        var totalSectionSerialNumberCountDictionaryCollection = Dictionary(convertedUniversalBeamsArrayDataExtractedFromTheCsvFileUsingTheParserIntoKeyValuePairsTuples, uniquingKeysWith: +)
+        
+        return totalSectionSerialNumberCountDictionaryCollection["\(universalBeamsSectionSerialNumberArray[section])"]!
+        
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return universalBeamsSectionSerialNumberArray[section] + " Series"
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! IsectionsCustomTableViewCell
+        
+        cell.sectionDesignationLabel.text = universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.filter({ $0.sectionSerialNumber == "\(universalBeamsSectionSerialNumberArray[indexPath.section])" }).map({ $0.fullSectionDesignation })[indexPath.row] + " Section:\(indexPath.section) Row:\(indexPath.row)"
+        
+        cell.sectionDesignationLabel.textColor = .black
+        
+        cell.sectionDesignationLabel.font = UIFont(name: "AppleSDGothicNeo-Light", size: 15)
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 50
+        
+    }
+    
+    @objc func navigationBarLeftButtonPressed(sender : UIButton) {
+        
+        print("button pressed")
+        
+        let controllerToGoBackTo = NewFileButtonPressedTabController()
+        
+        present(controllerToGoBackTo, animated: false, completion: nil)
+        
+    }
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        
+        return UIBarPosition.topAttached
         
     }
     
@@ -65,9 +145,13 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
             
             for row in rows {
                 
-                let sectionSeries = row["Section Series"]!
+                let firstSectionSeriesNumber = Int(row["First Section Series Number"]!)!
                 
-                let lastSectionSeriesNumber = row["Last Section Series Number"]!
+                let secondSectionSeriesNumber = Int(row["Second Section Series Number"]!)!
+                
+                let lastSectionSeriesNumber = Int(row["Last Section Series Number"]!)!
+                
+                let sectionSerialNumber = row["Section Serial Number"]!
                 
                 let fullSectionDesignation = row["Full Section Designation"]!
                 
@@ -85,10 +169,9 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
                 
                 let depthOfSectionBetweenFillets = Double(row["Depth between Fillets [d] (mm)"]!)!
                 
-                let individualUniversalBeamArrayOfDictionaries = IsectionsDimensionsParameters(sectionSeries: sectionSeries, lastSectionSeriesNumber: lastSectionSeriesNumber, fullSectionDesignation: fullSectionDesignation, sectionMassPerMetre: sectionMassPerMetre, depthOfSection: depthOfSection, widthOfSection: widthOfSection, sectionWebThickness: sectionWebThickness, sectionFlangeThickness: sectionFlangeThickness, sectionRootRadius: sectionRootRadius, depthOfSectionBetweenFillets: depthOfSectionBetweenFillets)
+                let individualUniversalBeamArrayOfDictionaries = IsectionsDimensionsParameters(firstSectionSeriesNumber: firstSectionSeriesNumber, secondSectionSeriesNumber: secondSectionSeriesNumber, lastSectionSeriesNumber: lastSectionSeriesNumber, sectionSerialNumber: sectionSerialNumber, fullSectionDesignation: fullSectionDesignation, sectionMassPerMetre: sectionMassPerMetre, depthOfSection: depthOfSection, widthOfSection: widthOfSection, sectionWebThickness: sectionWebThickness, sectionFlangeThickness: sectionFlangeThickness, sectionRootRadius: sectionRootRadius, depthOfSectionBetweenFillets: depthOfSectionBetweenFillets)
                 
                 // Then we need to append each of the above created Array of Dictionaries to the main Array declared above:
-                
                 universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.append(individualUniversalBeamArrayOfDictionaries)
                 
             }
@@ -101,69 +184,27 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    // The below function specifies how many cells in total should be displayed in our table:
+}
+
+// The below extension is needed in order to extend the Array functionalities so that any duplicate item inside Arrays can be removed:
+
+extension Array where Element: Hashable {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func removingDuplicates() -> [Element] {
         
-        return 10
+        var addedDict = [Element: Bool]()
         
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! IsectionsCustomTableViewCell
-        
-        let universalBeamsSeries1016x305Array = universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.filter({ return $0.fullSectionDesignation.contains("1016 x 305") })
-        
-        var gst = universalBeamsSeries1016x305Array.map({$0.fullSectionDesignation})
-        
-        cell.sectionDesignationLabel.text = gst[indexPath.row]
-        //
-        cell.sectionDesignationLabel.textColor = .black
-        
-        cell.sectionDesignationLabel.font = UIFont(name: "AppleSDGothicNeo-Light", size: 15)
-        
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 50
-        
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        if section == 1 {
+        return filter {
             
-            return "1016 x 305 series"
+            addedDict.updateValue(true, forKey: $0) == nil
             
         }
         
-        return "Something else"
-        
     }
     
-    @objc func navigationBarLeftButtonPressed(sender : UIButton) {
+    mutating func removeDuplicates() {
         
-        print("button pressed")
-        
-        let controllerToGoBackTo = NewFileButtonPressedTabController()
-        
-        present(controllerToGoBackTo, animated: false, completion: nil)
-        
-    }
-    
-    func position(for bar: UIBarPositioning) -> UIBarPosition {
-        
-        return UIBarPosition.topAttached
+        self = self.removingDuplicates()
         
     }
     

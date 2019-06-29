@@ -11,7 +11,6 @@
 		CF06437E22837A5600233D54 /* UniversalBeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF06437D22837A5600233D54 /* UniversalBeamsViewController.swift */; };
 		CF0E2CBC2270FB6200921458 /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0E2CBB2270FB6200921458 /* CustomCollectionView.swift */; };
 		CF318BB022BD814F00346AB0 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF318BAF22BD814F00346AB0 /* CustomTableView.swift */; };
-		CF318BB222BDA27100346AB0 /* UniversalBeamsDimensions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CF318BB122BDA27100346AB0 /* UniversalBeamsDimensions.csv */; };
 		CF3310782267ACA9002D4C4D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3310772267ACA9002D4C4D /* CustomTabBar.swift */; };
 		CF33107A2267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3310792267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift */; };
 		CF33107C2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33107B2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift */; };
@@ -27,6 +26,7 @@
 		CF8EC4D92263CBB800445A0C /* NewFileButtonPressedTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8EC4D82263CBB800445A0C /* NewFileButtonPressedTabController.swift */; };
 		CF9365CE227CF47B00BF05FC /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9365CD227CF47B00BF05FC /* CustomCollectionViewCell.swift */; };
 		CF9D7D1022BAC92000B787CE /* CsvParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9D7D0F22BAC92000B787CE /* CsvParser.swift */; };
+		CF9EB3E722C2CA9600CCD4E6 /* UniversalBeamsDimensions.csv in Resources */ = {isa = PBXBuildFile; fileRef = CF9EB3E622C2CA9600CCD4E6 /* UniversalBeamsDimensions.csv */; };
 		CFCCC7A0225BF136005C5F6A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCCC79F225BF136005C5F6A /* CustomButton.swift */; };
 		CFDBA457225E8BD200631F28 /* ButtonsAndIphonesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDBA456225E8BD200631F28 /* ButtonsAndIphonesData.swift */; };
 		D77E62E93B897408C3B8DF96 /* Pods_EC3_Cross_Section_Classification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71784A0D59CB20F7BEBABC6D /* Pods_EC3_Cross_Section_Classification.framework */; };
@@ -40,7 +40,6 @@
 		CF06437D22837A5600233D54 /* UniversalBeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversalBeamsViewController.swift; sourceTree = "<group>"; };
 		CF0E2CBB2270FB6200921458 /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
 		CF318BAF22BD814F00346AB0 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
-		CF318BB122BDA27100346AB0 /* UniversalBeamsDimensions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UniversalBeamsDimensions.csv; sourceTree = "<group>"; };
 		CF3310772267ACA9002D4C4D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		CF3310792267AE77002D4C4D /* FirstItemInTabBarOpenRolledSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstItemInTabBarOpenRolledSections.swift; sourceTree = "<group>"; };
 		CF33107B2267AE8E002D4C4D /* SecondItemInTabBarHollowStructuralSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondItemInTabBarHollowStructuralSections.swift; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		CF8EC4D82263CBB800445A0C /* NewFileButtonPressedTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFileButtonPressedTabController.swift; sourceTree = "<group>"; };
 		CF9365CD227CF47B00BF05FC /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF9D7D0F22BAC92000B787CE /* CsvParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CsvParser.swift; sourceTree = "<group>"; };
+		CF9EB3E622C2CA9600CCD4E6 /* UniversalBeamsDimensions.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UniversalBeamsDimensions.csv; sourceTree = "<group>"; };
 		CFCCC79F225BF136005C5F6A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CFDBA456225E8BD200631F28 /* ButtonsAndIphonesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsAndIphonesData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,7 +159,7 @@
 				CF85F1252284D2E10059D125 /* IsectionsCustomTableViewCell.swift */,
 				CF03A1A322B5827E007C426C /* IsectionsDimensionsParameters.swift */,
 				CF9D7D0F22BAC92000B787CE /* CsvParser.swift */,
-				CF318BB122BDA27100346AB0 /* UniversalBeamsDimensions.csv */,
+				CF9EB3E622C2CA9600CCD4E6 /* UniversalBeamsDimensions.csv */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,9 +229,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF9EB3E722C2CA9600CCD4E6 /* UniversalBeamsDimensions.csv in Resources */,
 				CF6DB1D42257E6B800C69B4C /* LaunchScreen.storyboard in Resources */,
 				CF6DB1D12257E6B800C69B4C /* Assets.xcassets in Resources */,
-				CF318BB222BDA27100346AB0 /* UniversalBeamsDimensions.csv in Resources */,
 				CF6DB1CC2257E6B700C69B4C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
