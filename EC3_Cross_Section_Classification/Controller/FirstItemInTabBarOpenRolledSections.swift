@@ -20,9 +20,35 @@ class FirstItemInTabBarOpenRolledSections: UIViewController, UICollectionViewDat
     
     override func viewDidLoad() {
         
+        print("FirstTabBarItem viewDidLoad()")
+
         super.viewDidLoad()
         
-        print("FirstTabBarItem viewDidLoad()")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print("FirstTabBarItem viewWillAppear()")
+
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        print("FirstTabBarItem viewDidDiappear()")
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        print("FirstTabBarItem viewWillDisappear()")
+
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        print("FirstTabBarItem viewDidAppear()")
+
         
     }
     

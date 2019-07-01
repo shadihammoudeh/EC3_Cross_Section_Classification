@@ -26,9 +26,9 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
     
     override func viewDidLoad() {
         
-        super.viewDidLoad()
-        
         print("Tab Controller viewDidLoad()")
+
+        super.viewDidLoad()
         
         setupTabBarItems()
 
@@ -36,12 +36,12 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
     
     override func viewDidLayoutSubviews() {
         
+        print("Tab Controller viewDidLayoutSubView()")
+
         super.viewDidLayoutSubviews()
         
-        print("Tab Controller viewDidLayoutSubView()")
-        
         tabBar.isTranslucent = false
-        
+
 //         The below line of code calculates the total height of the tabControllerView statusBar as well as its NavigationBar and pass the total to the FirstItemInTabBarOpenRolledSections ViewController:
         
         firstViewControllerInTabBar.tabBarControllerStatusBarPlusNavigationBarHeight = customNavigationBar.frame.size.height + UIApplication.shared.statusBarFrame.height
@@ -51,6 +51,12 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
     override func viewWillAppear(_ animated: Bool) {
         
         print("Tab Controller viewWillAppear()")
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        print("Tab Controller viewWillDisappear()")
         
     }
     
@@ -103,6 +109,8 @@ class NewFileButtonPressedTabController: UITabBarController, UINavigationBarDele
         let tabBarList = [firstViewControllerInTabBar, secondViewControllerInTabBar]
         
         viewControllers = tabBarList
+        
+
         
     }
     

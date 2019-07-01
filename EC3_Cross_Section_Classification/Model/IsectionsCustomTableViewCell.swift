@@ -10,31 +10,19 @@ import UIKit
 
 class IsectionsCustomTableViewCell: UITableViewCell {
     
-    // Below we are going to define the properties for each I section that we would like to display inside our TableView.
-    
-    var fullSectionDesignation: String?
-    
-    var sectionDepth: Double?
-    
-    var sectionWidth: Double?
-    
-    var sectionWebThickness: Double?
-    
-    var sectionFlangeThickness: Double?
-    
-    var sectionMassPerMetre: Double?
-    
     var sectionDesignationLabel: UILabel = {
         
         let label = UILabel()
         
+        label.textAlignment = .left
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
         
     }()
     
-    var sectionDepthLabel: UILabel = {
+    var depthOfSectionLabel: UILabel = {
         
         let label = UILabel()
         
@@ -44,7 +32,7 @@ class IsectionsCustomTableViewCell: UITableViewCell {
         
     }()
     
-    var sectionWidthLabel: UILabel = {
+    var widthOfSectionLabel: UILabel = {
         
         let label = UILabel()
         
@@ -90,41 +78,17 @@ class IsectionsCustomTableViewCell: UITableViewCell {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(sectionDesignationLabel)
+        addSubview(sectionDesignationLabel)
         
-        self.addSubview(sectionDepthLabel)
+        addSubview(depthOfSectionLabel)
         
-        self.addSubview(sectionWidthLabel)
+        addSubview(widthOfSectionLabel)
         
-        self.addSubview(sectionFlangeThicknessLabel)
+        addSubview(sectionWebThicknessLabel)
         
-        self.addSubview(sectionWebThicknessLabel)
+        addSubview(sectionFlangeThicknessLabel)
         
-        self.addSubview(sectionMassPerMetreLabel)
-        
-        sectionDesignationLabel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        
-        sectionDesignationLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        
-        sectionDesignationLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
-        sectionDesignationLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        
-    }
-    
-    // Now that we have setup the views as illustrated in the above line of codes we need to provide the needed information to be displayed inside the view that we created above. We cannot provide the information in the initializer as the information about the views is not initially provided, thus, we need to add them after the initializer. Thus we need to provide this in our layoutSubViews:
-    
-    override func layoutSubviews() {
-        
-        super.layoutSubviews()
-        
-        // The below is needed in order to check that the optional variables we defined at the beginning of this Class are not empty (this is called Optional Binding):
-        
-        if let sectionDesignation = fullSectionDesignation {
-            
-            sectionDesignationLabel.text = sectionDesignation
-            
-        }
+        applyAppropriateSizeAndConstraintsForCellItems()
         
     }
     
@@ -133,5 +97,63 @@ class IsectionsCustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
         
     }
+    
+    func applyAppropriateSizeAndConstraintsForCellItems() {
+        
+        
+        NSLayoutConstraint.activate([
+            
+            sectionDesignationLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
+            
+            sectionDesignationLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+            
+            sectionDesignationLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            
+            depthOfSectionLabel.topAnchor.constraint(equalTo: sectionDesignationLabel.bottomAnchor),
+            
+            depthOfSectionLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
+            
+            widthOfSectionLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+            
+            widthOfSectionLabel.topAnchor.constraint(equalTo: sectionDesignationLabel.bottomAnchor),
+            
+            sectionWebThicknessLabel.leftAnchor.constraint(equalTo: self.leftAnchor),
+            
+            sectionWebThicknessLabel.topAnchor.constraint(equalTo: depthOfSectionLabel.bottomAnchor),
+            
+            sectionFlangeThicknessLabel.rightAnchor.constraint(equalTo: self.rightAnchor),
+            
+            sectionFlangeThicknessLabel.topAnchor.constraint(equalTo: widthOfSectionLabel.bottomAnchor)
+            
+            ])
+        
+    }
+    
+    // The below function is needed in order to calculate the height of the cellLabel height based on its contents. Then this height is used to calulate the needed constraints for the cellLabel and cellImage:
+    
+    func autoLabelHeight(cellTitleTextSize textSize: CGFloat, cellTitleFontType fontType: String, cellTitle title: String) -> CGFloat {
+        
+        var currentHeight: CGFloat!
+        
+        let cellTitle = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: CGFloat.greatestFiniteMagnitude))
+        
+        cellTitle.text = title
+        
+        cellTitle.font = UIFont(name: fontType, size: textSize)
+        
+        cellTitle.numberOfLines = 0
+        
+        cellTitle.sizeToFit()
+        
+        cellTitle.lineBreakMode = .byWordWrapping
+        
+        currentHeight = cellTitle.frame.height
+        
+        cellTitle.removeFromSuperview()
+        
+        return currentHeight
+        
+    }
+    
     
 }

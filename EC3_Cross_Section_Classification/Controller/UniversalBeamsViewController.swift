@@ -24,7 +24,7 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         
         super.viewDidLoad()
         
-        print("UniversalBeamsViewController viewDidLoad initiated")
+        print("UniversalBeamsViewController viewDidLoad()")
         
         let customTableView = CustomTableView(tableViewDelegate: self, tableViewDataSource: self, tableViewHostView: self.view, tableViewCustomCellClassToBeRegistered: IsectionsCustomTableViewCell.self, tableViewCustomCellReuseIdentifierToBeRegistered: "customCell", tableViewTopAnchor: customNavigationBar.bottomAnchor
             , tableViewBottomAnchor: view.bottomAnchor)
@@ -56,6 +56,39 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
             }
             
         }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        print("UniversalBeamsViewController viewWillDisappear()")
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print("UniversalBeamsViewController viewWillAppear()")
+
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        print("UniversalBeamsViewController viewDidDisappear()")
+
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        print("UniversalBeamsViewController viewDidAppear()")
+
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        print("UniversalBeamsViewController viewDidLayoutSubViews()")
         
     }
     
@@ -91,17 +124,36 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         
         cell.sectionDesignationLabel.text = universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.filter({ $0.sectionSerialNumber == "\(universalBeamsSectionSerialNumberArray[indexPath.section])" }).map({ $0.fullSectionDesignation })[indexPath.row] + " Section:\(indexPath.section) Row:\(indexPath.row)"
         
-        cell.sectionDesignationLabel.textColor = .black
+        cell.depthOfSectionLabel.text = "Depth, h [mm] = " + String(universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.filter({ $0.sectionSerialNumber == "\(universalBeamsSectionSerialNumberArray[indexPath.section])" }).map({ $0.depthOfSection })[indexPath.row])
         
-        cell.sectionDesignationLabel.font = UIFont(name: "AppleSDGothicNeo-Light", size: 15)
+        cell.widthOfSectionLabel.text = "Width, b [mm] = " + String(universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.filter({ $0.sectionSerialNumber == "\(universalBeamsSectionSerialNumberArray[indexPath.section])" }).map({ $0.widthOfSection })[indexPath.row])
         
+        let fontForTheWholeString : UIFont? = UIFont(name: "AppleSDGothicNeo-Light", size: 14.50)
+        
+        let fontForTheSubScriptCharacter: UIFont? = UIFont(name: "AppleSDGothicNeo-Light", size: 10)
+        
+        let attributedSectionWebThicknessString: NSMutableAttributedString = NSMutableAttributedString(string: "Web Thickness, tw [mm] = \(String(universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.filter({ $0.sectionSerialNumber == "\(universalBeamsSectionSerialNumberArray[indexPath.section])" }).map({ $0.sectionWebThickness })[indexPath.row]))", attributes: [.font:fontForTheWholeString!])
+        attributedSectionWebThicknessString.setAttributes([.font:fontForTheSubScriptCharacter!,.baselineOffset:-6.5], range: NSRange(location:16,length:1))
+        
+        cell.sectionWebThicknessLabel.attributedText = attributedSectionWebThicknessString
+        
+        let attributedSectionFlangeThicknessString: NSMutableAttributedString = NSMutableAttributedString(string: "Flange Thickness, tf [mm] = \(String(universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.filter({ $0.sectionSerialNumber == "\(universalBeamsSectionSerialNumberArray[indexPath.section])" }).map({ $0.sectionFlangeThickness })[indexPath.row]))", attributes: [.font:fontForTheWholeString!])
+        attributedSectionFlangeThicknessString.setAttributes([.font: fontForTheSubScriptCharacter!,.baselineOffset: -6.5], range: NSRange(location: 19, length: 1))
+        
+        cell.sectionFlangeThicknessLabel.attributedText = attributedSectionFlangeThicknessString
+        
+        cell.depthOfSectionLabel.font = UIFont(name: "AppleSDGothicNeo-Light", size: 14.5)
+        
+        cell.widthOfSectionLabel.font = UIFont(name: "AppleSDGothicNeo-Light", size: 14.5)
+
+
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 50
+        return 80
         
     }
     
