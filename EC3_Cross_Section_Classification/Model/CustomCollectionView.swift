@@ -24,9 +24,9 @@ class CustomCollectionView: UICollectionView {
         
     }
     
-    convenience init(startingHoriztonalCoordinateOfCollectionView xCoordinate: CGFloat, startingVerticalCoordinateOfCollectionView yCoordinate: CGFloat, heightOfCollectionView height: CGFloat, viewCollectionViewWillBeAddedTo hostView: UIView, collectionViewLayoutTopEdgeInset topInset: CGFloat, collectionViewLayoutLeftEdgeInset leftInset: CGFloat, collectionViewLayoutBottomEdgeInset bottomInset: CGFloat, collectionViewLayoutRightEdgeInset rightInset: CGFloat, collectionViewLayoutCellsMinimumVerticalSpacings cellsVerticalSpacings: CGFloat, collectionViewLayoutCellsMinimumHorizontalSpacings cellsHorizontalSpacings: CGFloat, numberOfCellsPerRow cellsPerRow: CGFloat, numberOfCellsPerColumn cellsPerColumn: CGFloat, hostViewDataSource: UICollectionViewDataSource, hostViewDelegate: UICollectionViewDelegate, hexCodeColorForBackgroundColor hexCode: String) {
+    convenience init(startingHoriztonalCoordinateOfCollectionView xCoordinate: CGFloat, startingVerticalCoordinateOfCollectionView yCoordinate: CGFloat, widthOfCollectionView: CGFloat, heightOfCollectionView height: CGFloat, collectionViewLayoutTopEdgeInset topInset: CGFloat, collectionViewLayoutLeftEdgeInset leftInset: CGFloat, collectionViewLayoutBottomEdgeInset bottomInset: CGFloat, collectionViewLayoutRightEdgeInset rightInset: CGFloat, collectionViewLayoutCellsMinimumVerticalSpacings cellsVerticalSpacings: CGFloat, collectionViewLayoutCellsMinimumHorizontalSpacings cellsHorizontalSpacings: CGFloat, numberOfCellsPerRow cellsPerRow: CGFloat, numberOfCellsPerColumn cellsPerColumn: CGFloat, hostViewDataSource: UICollectionViewDataSource, hostViewDelegate: UICollectionViewDelegate, hexCodeColorForBackgroundColor hexCode: String) {
         
-        self.init(frame: CGRect(x: xCoordinate, y: yCoordinate, width: hostView.frame.size.width, height: height), collectionViewLayout: {
+        self.init(frame: CGRect(x: xCoordinate, y: yCoordinate, width: widthOfCollectionView, height: height), collectionViewLayout: {
             
             let collectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
             
@@ -42,7 +42,7 @@ class CustomCollectionView: UICollectionView {
             
             collectionViewLayout.minimumInteritemSpacing = cellsHorizontalSpacings
             
-            let widthOfSingleCollectionViewCell: CGFloat = ((hostView.frame.size.width) - (leftInset + rightInset + (cellsHorizontalSpacings * (cellsPerRow - 1)))) / cellsPerRow
+            let widthOfSingleCollectionViewCell: CGFloat = ((widthOfCollectionView) - (leftInset + rightInset + (cellsHorizontalSpacings * (cellsPerRow - 1)))) / cellsPerRow
             
             let heightOfSingleCollectionViewCell: CGFloat = ((height) - (topInset + bottomInset + (cellsVerticalSpacings * (cellsPerColumn - 1)))) / cellsPerColumn
             
@@ -61,6 +61,8 @@ class CustomCollectionView: UICollectionView {
         delegate = hostViewDelegate
         
         backgroundColor = .init(hexString: hexCode)
+        
+        translatesAutoresizingMaskIntoConstraints = false
         
         // In the below line of code we are registering the CustomCollectionViewCell class that we created as the cell to be used for the custom CollectionView class:
         

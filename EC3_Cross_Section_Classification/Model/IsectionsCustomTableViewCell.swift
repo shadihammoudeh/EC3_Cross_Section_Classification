@@ -8,6 +8,8 @@
 
 import UIKit
 
+import ChameleonFramework
+
 class IsectionsCustomTableViewCell: UITableViewCell {
     
     var sectionDesignationLabel: UILabel = {
@@ -17,6 +19,8 @@ class IsectionsCustomTableViewCell: UITableViewCell {
         label.textAlignment = .left
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.textColor = UIColor(hexString: "#F27E63")
         
         return label
         
@@ -28,6 +32,8 @@ class IsectionsCustomTableViewCell: UITableViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
+        label.textColor = UIColor(hexString: "#F27E63")
+        
         return label
         
     }()
@@ -37,6 +43,8 @@ class IsectionsCustomTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.textColor = UIColor(hexString: "#F27E63")
         
         return label
         
@@ -48,6 +56,8 @@ class IsectionsCustomTableViewCell: UITableViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
+        label.textColor = UIColor(hexString: "#F27E63")
+        
         return label
         
     }()
@@ -58,6 +68,8 @@ class IsectionsCustomTableViewCell: UITableViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
+        label.textColor = UIColor(hexString: "#F27E63")
+
         return label
         
     }()
@@ -68,6 +80,8 @@ class IsectionsCustomTableViewCell: UITableViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
+        label.textColor = UIColor(hexString: "#F27E63")
+
         return label
         
     }()

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main Screen-->
+        <!--Main Screen View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MainScreen" id="BYZ-38-t0r" customClass="MainScreen" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MainScreen" storyboardIdentifier="MainScreen" id="BYZ-38-t0r" customClass="MainScreenViewController" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SrA-gZ-x5C"/>
                         <viewControllerLayoutGuide type="bottom" id="K0V-Wn-2G9"/>
@@ -47,7 +47,7 @@
                         <viewControllerLayoutGuide type="bottom" id="c5u-1K-wue"/>
                     </layoutGuides>
                     <view key="view" tag="1" contentMode="scaleToFill" id="dqA-0J-58d">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -60,17 +60,17 @@
         <!--Hot Rolled Structural Steel-->
         <scene sceneID="xS4-0z-UQb">
             <objects>
-                <viewController storyboardIdentifier="FirstItemInTabBarOpenRolledSections" id="XkX-MK-yRn" customClass="FirstItemInTabBarOpenRolledSections" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstItemInTabBarOpenRolledSections" id="XkX-MK-yRn" customClass="OpenRolledSectionsTabViewController" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pqg-Db-0PG"/>
                         <viewControllerLayoutGuide type="bottom" id="QgK-Aw-2I6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vUK-GK-JTq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hot Rolled Structural Steel" image="unSelectedOpenSections" selectedImage="selectedOpenSections" id="tkg-QK-Oxp"/>
+                    <tabBarItem key="tabBarItem" title="Hot Rolled Structural Steel" id="tkg-QK-Oxp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBU-u7-5OQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -103,13 +103,14 @@
             </objects>
             <point key="canvasLocation" x="3461" y="-438"/>
         </scene>
-        <!--New File Button Pressed Tab Controller-->
+        <!--New File Tab Controller-->
         <scene sceneID="FCA-5N-cW7">
             <objects>
-                <tabBarController storyboardIdentifier="NewFileButtonPressedTabController" id="6Jh-Bi-BxK" customClass="NewFileButtonPressedTabController" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="euD-Iv-9IP">
+                <tabBarController restorationIdentifier="NewFileButtonPressedTabController" storyboardIdentifier="NewFileButtonPressedTabController" id="6Jh-Bi-BxK" customClass="NewFileTabController" customModule="EC3_Cross_Section_Classification" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="euD-Iv-9IP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
@@ -124,7 +125,5 @@
     </scenes>
     <resources>
         <image name="backgroundImageMainScreen" width="1241" height="2688"/>
-        <image name="selectedOpenSections" width="26.333333969116211" height="26.333333969116211"/>
-        <image name="unSelectedOpenSections" width="26.333333969116211" height="26.333333969116211"/>
     </resources>
 </document>

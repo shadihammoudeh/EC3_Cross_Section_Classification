@@ -8,17 +8,25 @@
 
 import UIKit
 
+import ChameleonFramework
+
 class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate {
     
-    lazy var customNavigationBar = CustomNavigationBar(navigationBarLeftButtonImage: "backButton", navigationBarItemsTintColour: .green, navigationBarButtonTarget: self, navigationBarButtonSelector: #selector(navigationBarLeftButtonPressed(sender:)), labelTitleText: "Universal Beams (UB)", labelTitleTextColour: .red, labelTitleFontSize: 18, labelTitleFontType: "AppleSDGothicNeo-Light", viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBackgroundColour: .black, navigationBarBarStyle: .black, navigationBarBarTintColourHexCode: "#030806")
+    // The below code line declares the custom NavigationBar to be added to this ViewController. The reason it is defined as a lazy var, is to allow us to access the view properties:
     
-    // The below Array is the one which contains the data extracted from the passed CSV. It contains the data in a one big Array, which contains several Arrays inside it, whereby each Array inside the big Array contains several Dictionaries:
+    lazy var navigationBar = CustomNavigationBar(navigationBarLeftButtonImage: "backButton", navigationBarItemsTintColour: .green, navigationBarButtonTarget: self, navigationBarButtonSelector: #selector(navigationBarLeftButtonPressed(sender:)), labelTitleText: "Universal Beams (UB)", labelTitleTextColour: .red, labelTitleFontSize: 18, labelTitleFontType: "AppleSDGothicNeo-Light", navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBackgroundColour: .black, navigationBarBarStyle: .black, navigationBarBarTintColourHexCode: "#030806")
+    
+    var tableSectionHeaderFont = UIFont(name: "AppleSDGothicNeo-Bold", size: 25)
+    
+    // The below Array is the one which contains the data extracted from the passed CSV file. It contains the data in a one big Array, which contains several Arrays inside it, whereby each Array inside the big Array contains several Dictionaries:
     
     var universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser = [IsectionsDimensionsParameters]()
     
-    // The below Array is mapped from the above Array, whereby only sectionSerialNumbers are reported inside of it, with no duplication:
+    // The below Array is mapped from the above Array, whereby only sectionSerialNumbers are reported inside of it, with no duplication using the extension at the end of this Class (i.e., Array):
     
     lazy var universalBeamsSectionSerialNumberArray = universalBeamsArrayDataExtractedFromTheCsvFileUsingTheParser.map({ return $0.sectionSerialNumber }).removingDuplicates()
+    
+    // The below is the first ViewController cycle:
     
     override func viewDidLoad() {
         
@@ -26,14 +34,11 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         
         print("UniversalBeamsViewController viewDidLoad()")
         
-        let customTableView = CustomTableView(tableViewDelegate: self, tableViewDataSource: self, tableViewHostView: self.view, tableViewCustomCellClassToBeRegistered: IsectionsCustomTableViewCell.self, tableViewCustomCellReuseIdentifierToBeRegistered: "customCell", tableViewTopAnchor: customNavigationBar.bottomAnchor
-            , tableViewBottomAnchor: view.bottomAnchor)
+        view.addSubview(navigationBar)
         
-        // Do any additional setup after loading the view.
+        let universalBeamsTableView = CustomTableView(tableViewBackgroundColourHexCode: "#0D0D0D", tableViewDelegate: self, tableViewDataSource: self, tableViewHostView: self.view, tableViewCustomCellClassToBeRegistered: IsectionsCustomTableViewCell.self, tableViewCustomCellReuseIdentifierToBeRegistered: "customCell", tableViewTopAnchor: navigationBar.bottomAnchor, tableViewBottomAnchor: view.bottomAnchor)
         
-        view.backgroundColor = .yellow
-        
-        // We are going to call the parse function as soon as the application loads:
+        // We are going to call the parse function as soon as the application loads in order to extract the CSV data inside of it:
         
         parseCsvFile(csvFileToParse: "UniversalBeamsDimensions")
         
@@ -59,30 +64,9 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        print("UniversalBeamsViewController viewWillDisappear()")
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         
         print("UniversalBeamsViewController viewWillAppear()")
-
-        
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        
-        print("UniversalBeamsViewController viewDidDisappear()")
-
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        print("UniversalBeamsViewController viewDidAppear()")
-
         
     }
     
@@ -90,11 +74,85 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         
         print("UniversalBeamsViewController viewDidLayoutSubViews()")
         
+        setupNavigationBarConstraints()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        print("UniversalBeamsViewController viewDidAppear()")
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        print("UniversalBeamsViewController viewWillDisappear()")
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        print("UniversalBeamsViewController viewDidDisappear()")
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
+        // The below code returns the total number of items inside the universalBeamsSectionSerialNumberArray, which is equal to the ttoal number of section in our table:
+        
         return universalBeamsSectionSerialNumberArray.count
+        
+    }
+    
+    // The below function defines the properties of section headers as well as what should be displayed inside them:
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let sectionHeaderView = UIView()
+        
+        let sectionHeaderTitle = UILabel()
+        
+        sectionHeaderTitle.font = tableSectionHeaderFont
+        
+        sectionHeaderTitle.translatesAutoresizingMaskIntoConstraints = false
+        
+        sectionHeaderView.frame.size.width = view.frame.size.width
+        
+        let maxWidth = view.frame.size.width
+
+        sectionHeaderView.backgroundColor = UIColor(hexString: "#BF2C0B")
+        
+        sectionHeaderTitle.textColor = UIColor(hexString: "#F2AB6D")
+        
+        sectionHeaderTitle.textAlignment = .left
+        
+        sectionHeaderTitle.text = universalBeamsSectionSerialNumberArray[section] + " Series"
+        
+        sectionHeaderTitle.numberOfLines = 0
+        
+        sectionHeaderTitle.frame.size.width = sectionHeaderView.frame.size.width
+        
+        sectionHeaderTitle.frame.size.height = calculateUILabelHeightBasedOnItsText(text: sectionHeaderTitle.text!, font: tableSectionHeaderFont!, width: maxWidth)
+        
+        sectionHeaderView.addSubview(sectionHeaderTitle)
+        
+        NSLayoutConstraint.activate([
+        
+            sectionHeaderTitle.leftAnchor.constraint(equalTo: sectionHeaderView.leftAnchor, constant: 20),
+            
+            sectionHeaderTitle.rightAnchor.constraint(equalTo: sectionHeaderView.rightAnchor, constant: -20),
+            
+            sectionHeaderTitle.centerYAnchor.constraint(equalTo: sectionHeaderView.centerYAnchor)
+            
+        ])
+        
+        return sectionHeaderView
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return calculateUILabelHeightBasedOnItsText(text: universalBeamsSectionSerialNumberArray[section] + " Series", font: tableSectionHeaderFont!, width: view.frame.size.width - 40)
         
     }
     
@@ -109,12 +167,6 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         var totalSectionSerialNumberCountDictionaryCollection = Dictionary(convertedUniversalBeamsArrayDataExtractedFromTheCsvFileUsingTheParserIntoKeyValuePairsTuples, uniquingKeysWith: +)
         
         return totalSectionSerialNumberCountDictionaryCollection["\(universalBeamsSectionSerialNumberArray[section])"]!
-        
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        return universalBeamsSectionSerialNumberArray[section] + " Series"
         
     }
     
@@ -145,8 +197,11 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         cell.depthOfSectionLabel.font = UIFont(name: "AppleSDGothicNeo-Light", size: 14.5)
         
         cell.widthOfSectionLabel.font = UIFont(name: "AppleSDGothicNeo-Light", size: 14.5)
-
-
+        
+        
+        
+        cell.backgroundColor = UIColor(hexString: "#0D0D0D")
+        
         return cell
         
     }
@@ -161,7 +216,7 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
         
         print("button pressed")
         
-        let controllerToGoBackTo = NewFileButtonPressedTabController()
+        let controllerToGoBackTo = NewFileTabController()
         
         present(controllerToGoBackTo, animated: false, completion: nil)
         
@@ -170,6 +225,44 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         
         return UIBarPosition.topAttached
+        
+    }
+    
+    // The below function calculates the needed height for a UILabel based on the size of the text inisde of it:
+    
+    func calculateUILabelHeightBasedOnItsText (text:String, font:UIFont, width:CGFloat) -> CGFloat{
+        
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        
+        // The below code line allows the UILabel to display the text on multiple lines if the do not fit in its width:
+        
+        label.numberOfLines = 0
+        
+        // lineBreakMode in the below code defines the technique used to for wrapping and trauncating the label's text.
+        
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
+        label.font = font
+        
+        label.text = text
+        
+        label.sizeToFit()
+        
+        return label.frame.height
+        
+    }
+    
+    func setupNavigationBarConstraints() {
+        
+        NSLayoutConstraint.activate([
+            
+            navigationBar.leftAnchor.constraint(equalTo: view.leftAnchor),
+            
+            navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            
+            ])
         
     }
     
@@ -238,7 +331,7 @@ class UniversalBeamsViewController: UIViewController, UITableViewDelegate, UITab
     
 }
 
-// The below extension is needed in order to extend the Array functionalities so that any duplicate item inside Arrays can be removed:
+// The below extension is needed in order to extend the Array's functionalities so that any duplicate item inside Arrays can be removed:
 
 extension Array where Element: Hashable {
     

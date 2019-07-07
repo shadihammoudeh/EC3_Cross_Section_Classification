@@ -8,6 +8,8 @@
 
 import UIKit
 
+import ChameleonFramework
+
 class CustomTableView: UITableView {
 
     override init(frame: CGRect, style: UITableView.Style) {
@@ -22,19 +24,19 @@ class CustomTableView: UITableView {
         
     }
     
-    convenience init(tableViewDelegate: UITableViewDelegate, tableViewDataSource: UITableViewDataSource, tableViewHostView: UIView, tableViewCustomCellClassToBeRegistered: AnyClass?, tableViewCustomCellReuseIdentifierToBeRegistered: String, tableViewTopAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>, tableViewBottomAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>) {
+    convenience init(tableViewBackgroundColourHexCode: String, tableViewDelegate: UITableViewDelegate, tableViewDataSource: UITableViewDataSource, tableViewHostView: UIView, tableViewCustomCellClassToBeRegistered: AnyClass?, tableViewCustomCellReuseIdentifierToBeRegistered: String, tableViewTopAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>, tableViewBottomAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>) {
         
         self.init()
         
-        setupEssentialTableViewProperties(tableViewDelegate: tableViewDelegate, tableViewDataSource: tableViewDataSource, hostView: tableViewHostView, tableViewCellClassToBeRegistered: tableViewCustomCellClassToBeRegistered, tableViewCellReuseIdentifierToBeRegistered: tableViewCustomCellReuseIdentifierToBeRegistered)
+        setupEssentialTableViewProperties(tableViewDelegate: tableViewDelegate, tableViewDataSource: tableViewDataSource, hostView: tableViewHostView, tableViewCellClassToBeRegistered: tableViewCustomCellClassToBeRegistered, tableViewCellReuseIdentifierToBeRegistered: tableViewCustomCellReuseIdentifierToBeRegistered, tableViewBackgroundColourHexCode: tableViewBackgroundColourHexCode)
         
         setupConstraints(hostView: tableViewHostView, topAnchorConstraint: tableViewTopAnchor, bottomAnchorConstraint: tableViewBottomAnchor)
         
     }
     
-    func setupEssentialTableViewProperties(tableViewDelegate: UITableViewDelegate, tableViewDataSource: UITableViewDataSource, hostView: UIView, tableViewCellClassToBeRegistered cellClassRegister: AnyClass?, tableViewCellReuseIdentifierToBeRegistered forCelReuseIdentifierRegister: String) {
+    func setupEssentialTableViewProperties(tableViewDelegate: UITableViewDelegate, tableViewDataSource: UITableViewDataSource, hostView: UIView, tableViewCellClassToBeRegistered cellClassRegister: AnyClass?, tableViewCellReuseIdentifierToBeRegistered forCelReuseIdentifierRegister: String, tableViewBackgroundColourHexCode: String) {
         
-        backgroundColor = UIColor.green
+        backgroundColor = UIColor(hexString: tableViewBackgroundColourHexCode)
         
         delegate = tableViewDelegate
         

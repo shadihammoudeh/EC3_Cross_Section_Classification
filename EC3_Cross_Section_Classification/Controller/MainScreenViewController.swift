@@ -10,13 +10,13 @@ import UIKit
 
 import ChameleonFramework
 
-class MainScreen: UIViewController, UINavigationBarDelegate {
+class MainScreenViewController: UIViewController, UINavigationBarDelegate {
     
     // The below line of code connects the background image as an IBOutlet to this ViewController, in order to be able to apply constraints to it later on:
     
     @IBOutlet weak var backgroundImage: UIImageView!
     
-    lazy var customNavigationBar = CustomNavigationBar(labelTitleText: "Cross-Section Classification to Eurocode 3 (BS EN 1993-1-1:2005)", labelTitleTextColour: .white, labelTitleFontSize: 18, labelTitleFontType: "Apple SD Gothic Neo", viewNavigationBarWillBeAddedTo: self.view, navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBarStyle: .default, navigationBarBarTintColourHexCode: "#030806")
+    lazy var navigationBar = CustomNavigationBar(labelTitleText: "Cross-Section Classification to Eurocode 3 (BS EN 1993-1-1:2005)", labelTitleTextColour: .white, labelTitleFontSize: 18, labelTitleFontType: "Apple SD Gothic Neo", navigationBarDelegate: self, isNavigationBarTranslucent: false, navigationBarBarStyle: .default, navigationBarBarTintColourHexCode: "#030806")
     
     var newFileButton = CustomButton(buttonTitleTexForNormalState: "New...", buttonTitleTextColourForNormalState: .white, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonTagNumber: 1, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "New File")
     
@@ -26,20 +26,50 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
     
     var contactUsButton = CustomButton(buttonTitleTexForNormalState: "Contact Us", buttonTitleTextColourForNormalState: .white, buttonTitleTextColourForHighlightedState: .blue, buttonTitleFontType: "Apple SD Gothic Neo", buttonTitleFontSize: 17, buttonTagNumber: 4, buttonTarget: self, buttonSelector: #selector(buttonPressed(sender:)), buttonImageForNormalState: "Contact Us")
     
+    override func viewDidLoad() {
+        
+        print("MainScreen viewDidLoad")
+        
+        super.viewDidLoad()
+        
+        view.addSubview(newFileButton)
+        
+        view.addSubview(openFileButton)
+        
+        view.addSubview(documentationButton)
+        
+        view.addSubview(contactUsButton)
+        
+        view.addSubview(navigationBar)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print("MainScreen viewWillAppear")
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        print("MainScreen viewDidAppear")
+        
+    }
+    
     // The viewDidLayoutSubviews() gets called to notify the view controller that its view has just laid out its subviews:
     
     override func viewDidLayoutSubviews() {
         
+        print("MainScreen viewDidLayoutSubviews")
+
         super.viewDidLayoutSubviews()
-        
-        print("viewDidLayoutSubviews")
         
         newFileButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
         
         openFileButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-
+        
         documentationButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-
+        
         contactUsButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         
         openFileButton.frame.size.width = 115
@@ -48,11 +78,19 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
         
         contactUsButton.frame.size.width = 145
         
-        let statusBarPlusNavigationBarHeight = customNavigationBar.frame.size.height + UIApplication.shared.statusBarFrame.size.height
+        let statusBarPlusNavigationBarHeight = navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.size.height
+        
+        print("Navigation Bar Height is equal to \(navigationBar.frame.size.height)")
+        
+        print("Status Bar Height is equal to \(UIApplication.shared.statusBarFrame.size.height)")
         
         let totalScreenHeightInculdingSafeAreaGuidlines = view.frame.size.height
         
+        print("Total screen height including safe area guidlines \(view.frame.size.height)")
+        
         let bottomViewSafeAreaGuidlineHeight = view.safeAreaInsets.bottom
+        
+        print("Bottom view safe area guidline height is equal to \(view.safeAreaInsets.bottom)")
         
         let totalScreenSafeAreaHeight = totalScreenHeightInculdingSafeAreaGuidlines - statusBarPlusNavigationBarHeight - bottomViewSafeAreaGuidlineHeight
         
@@ -62,19 +100,15 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
 
     }
     
-    override func viewDidLoad() {
+    override func viewWillDisappear(_ animated: Bool) {
         
-        super.viewDidLoad()
+        print("MainScreen viewWillDisappear")
+
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
         
-        print("viewDidLoad")
-        
-        view.addSubview(newFileButton)
-        
-        view.addSubview(openFileButton)
-        
-        view.addSubview(documentationButton)
-        
-        view.addSubview(contactUsButton)
+        print("MainScreen viewDidDisappear")
         
     }
     
@@ -132,7 +166,13 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
             
             backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            newFileButton.topAnchor.constraint(equalTo: customNavigationBar.bottomAnchor, constant: verticalSpacings),
+            navigationBar.leftAnchor.constraint(equalTo: view.leftAnchor),
+            
+            navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            
+            newFileButton.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: verticalSpacings),
             
             newFileButton.leftAnchor.constraint(equalTo: documentationButton.leftAnchor),
             
@@ -147,8 +187,7 @@ class MainScreen: UIViewController, UINavigationBarDelegate {
             contactUsButton.topAnchor.constraint(equalTo: documentationButton.bottomAnchor, constant: verticalSpacings),
             
             contactUsButton.leftAnchor.constraint(equalTo: documentationButton.leftAnchor)
-            
-            
+
             ])
         
     }
